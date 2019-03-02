@@ -1,0 +1,59 @@
+ext {
+
+    //Android Config
+    minSDK = 15
+    targetSDK = 28
+    compileSDK = 28
+
+    buildTools = '3.3.1'
+
+    // Kotlin
+    kotlinVersion = '1.3.21'
+
+    // Libraries
+    archVersion = '2.0.0'
+    appCompatVersion = '1.0.2'
+    recyclerVersion = '1.0.0'
+    ktxVersion = '1.0.1'
+    retrofitVersion = '2.5.0'
+    rxJavaVersion = '2.2.7'
+    rxAndroidVersion = '2.1.1'
+
+    // Test Libraries
+    jUnitVersion = '4.12'
+
+    coreDependencies = [
+            kotlin               : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion",
+            rxJava               : "io.reactivex.rxjava2:rxjava:$rxJavaVersion",
+            retrofit             : "com.squareup.retrofit2:retrofit:$retrofitVersion",
+            retrofitRxJavaAdapter: "com.squareup.retrofit2:adapter-rxjava2:$retrofitVersion",
+            retrofitGsonConverter: "com.squareup.retrofit2:converter-gson:$retrofitVersion",
+            lifecycleRuntime     : "androidx.lifecycle:lifecycle-runtime:$archVersion",
+            lifecycleExtensions  : "androidx.lifecycle:lifecycle-extensions:$archVersion",
+    ]
+
+    coreTestDependencies = [
+            jUnit               : "junit:junit:$jUnitVersion"
+    ]
+
+    appDependencies = [
+            kotlin               : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion",
+
+            appCompat            : "androidx.appcompat:appcompat:$appCompatVersion",
+            recycler             : "androidx.recyclerview:recyclerview:$recyclerVersion",
+            lifecycleRuntime     : "androidx.lifecycle:lifecycle-runtime:$archVersion",
+            lifecycleExtensions  : "androidx.lifecycle:lifecycle-extensions:$archVersion",
+            coreKtx              : "androidx.core:core-ktx:$ktxVersion",
+
+            retrofit             : "com.squareup.retrofit2:retrofit:$retrofitVersion",
+            retrofitRxJavaAdapter: "com.squareup.retrofit2:adapter-rxjava2:$retrofitVersion",
+            retrofitGsonConverter: "com.squareup.retrofit2:converter-gson:$retrofitVersion",
+            rxJava               : "io.reactivex.rxjava2:rxjava:$rxJavaVersion",
+            rxAndroid            : "io.reactivex.rxjava2:rxandroid:$rxAndroidVersion",
+    ]
+
+    appTestDependencies = [
+            jUnit               : "junit:junit:$jUnitVersion"
+    ]
+
+}
