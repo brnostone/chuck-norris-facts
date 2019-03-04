@@ -30,4 +30,10 @@ dependencies {
     implementation dependencies.retrofitRxJavaAdapter
     implementation dependencies.retrofitGsonConverter
 
+    implementation dependencies.koin
+    implementation dependencies.koinViewModel
+
+    implementation dependencies.lifecycleRuntime
+    implementation dependencies.lifecycleExtensions
+
 }

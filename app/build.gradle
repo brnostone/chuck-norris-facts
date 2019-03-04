@@ -21,6 +21,8 @@ android {
 }
 
 dependencies {
+    implementation project(path: ':core')
+
     def dependencies = rootProject.ext.appDependencies
     def testDependencies = rootProject.ext.appTestDependencies
 
@@ -35,11 +37,15 @@ dependencies {
     implementation dependencies.coreKtx
     implementation dependencies.lifecycleRuntime
     implementation dependencies.lifecycleExtensions
+    implementation dependencies.materialDesign
 
     implementation dependencies.retrofit
     implementation dependencies.retrofitRxJavaAdapter
     implementation dependencies.retrofitGsonConverter
     implementation dependencies.rxJava
     implementation dependencies.rxAndroid
+
+    implementation dependencies.koin
+    implementation dependencies.koinViewModel
 
 }

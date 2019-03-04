@@ -13,23 +13,31 @@ ext {
     // Libraries
     archVersion = '2.0.0'
     appCompatVersion = '1.0.2'
+    materialVersion = '1.0.0'
     recyclerVersion = '1.0.0'
+
     ktxVersion = '1.0.1'
     retrofitVersion = '2.5.0'
     rxJavaVersion = '2.2.7'
     rxAndroidVersion = '2.1.1'
+    koinVersion = '1.0.2'
 
     // Test Libraries
     jUnitVersion = '4.12'
 
     coreDependencies = [
             kotlin               : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion",
+
             rxJava               : "io.reactivex.rxjava2:rxjava:$rxJavaVersion",
             retrofit             : "com.squareup.retrofit2:retrofit:$retrofitVersion",
             retrofitRxJavaAdapter: "com.squareup.retrofit2:adapter-rxjava2:$retrofitVersion",
             retrofitGsonConverter: "com.squareup.retrofit2:converter-gson:$retrofitVersion",
+
             lifecycleRuntime     : "androidx.lifecycle:lifecycle-runtime:$archVersion",
             lifecycleExtensions  : "androidx.lifecycle:lifecycle-extensions:$archVersion",
+
+            koin                 : "org.koin:koin-android:$koinVersion",
+            koinViewModel        : "org.koin:koin-androidx-viewmodel:$koinVersion",
     ]
 
     coreTestDependencies = [
@@ -41,6 +49,8 @@ ext {
 
             appCompat            : "androidx.appcompat:appcompat:$appCompatVersion",
             recycler             : "androidx.recyclerview:recyclerview:$recyclerVersion",
+            materialDesign       : "com.google.android.material:material:$materialVersion",
+
             lifecycleRuntime     : "androidx.lifecycle:lifecycle-runtime:$archVersion",
             lifecycleExtensions  : "androidx.lifecycle:lifecycle-extensions:$archVersion",
             coreKtx              : "androidx.core:core-ktx:$ktxVersion",
@@ -50,6 +60,9 @@ ext {
             retrofitGsonConverter: "com.squareup.retrofit2:converter-gson:$retrofitVersion",
             rxJava               : "io.reactivex.rxjava2:rxjava:$rxJavaVersion",
             rxAndroid            : "io.reactivex.rxjava2:rxandroid:$rxAndroidVersion",
+
+            koin                 : "org.koin:koin-android:$koinVersion",
+            koinViewModel        : "org.koin:koin-androidx-viewmodel:$koinVersion",
     ]
 
     appTestDependencies = [
