@@ -21,10 +21,11 @@ android {
 }
 
 dependencies {
-    implementation project(path: ':core')
+    implementation project(path: ':domain')
+    implementation project(path: ':data')
 
-    def dependencies = rootProject.ext.appDependencies
-    def testDependencies = rootProject.ext.appTestDependencies
+    def dependencies = rootProject.ext.dependencies
+    def testDependencies = rootProject.ext.testDependencies
 
     testImplementation testDependencies.jUnit
     androidTestImplementation 'androidx.test.ext:junit:1.1.0'
@@ -39,9 +40,6 @@ dependencies {
     implementation dependencies.lifecycleExtensions
     implementation dependencies.materialDesign
 
-    implementation dependencies.retrofit
-    implementation dependencies.retrofitRxJavaAdapter
-    implementation dependencies.retrofitGsonConverter
     implementation dependencies.rxJava
     implementation dependencies.rxAndroid
 

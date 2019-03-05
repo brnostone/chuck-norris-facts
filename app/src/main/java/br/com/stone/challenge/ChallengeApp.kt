@@ -1,7 +1,8 @@
 package br.com.stone.challenge
 
 import android.app.Application
-import br.com.stone.core.di.coreModule
+import br.com.stone.challenge.di.presentationModule
+import br.com.stone.data.di.dataModule
 import org.koin.android.ext.android.startKoin
 
 class ChallengeApp : Application() {
@@ -10,7 +11,8 @@ class ChallengeApp : Application() {
         super.onCreate()
 
         startKoin(this, listOf(
-            coreModule
+            presentationModule,
+            dataModule
         ))
     }
 

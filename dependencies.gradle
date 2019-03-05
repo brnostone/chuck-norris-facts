@@ -25,47 +25,29 @@ ext {
     // Test Libraries
     jUnitVersion = '4.12'
 
-    coreDependencies = [
-            kotlin               : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion",
-
-            rxJava               : "io.reactivex.rxjava2:rxjava:$rxJavaVersion",
-            retrofit             : "com.squareup.retrofit2:retrofit:$retrofitVersion",
-            retrofitRxJavaAdapter: "com.squareup.retrofit2:adapter-rxjava2:$retrofitVersion",
-            retrofitGsonConverter: "com.squareup.retrofit2:converter-gson:$retrofitVersion",
-
-            lifecycleRuntime     : "androidx.lifecycle:lifecycle-runtime:$archVersion",
-            lifecycleExtensions  : "androidx.lifecycle:lifecycle-extensions:$archVersion",
-
-            koin                 : "org.koin:koin-android:$koinVersion",
-            koinViewModel        : "org.koin:koin-androidx-viewmodel:$koinVersion",
-    ]
-
-    coreTestDependencies = [
-            jUnit               : "junit:junit:$jUnitVersion"
-    ]
-
-    appDependencies = [
+    dependencies = [
             kotlin               : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion",
 
             appCompat            : "androidx.appcompat:appcompat:$appCompatVersion",
             recycler             : "androidx.recyclerview:recyclerview:$recyclerVersion",
             materialDesign       : "com.google.android.material:material:$materialVersion",
-
-            lifecycleRuntime     : "androidx.lifecycle:lifecycle-runtime:$archVersion",
-            lifecycleExtensions  : "androidx.lifecycle:lifecycle-extensions:$archVersion",
             coreKtx              : "androidx.core:core-ktx:$ktxVersion",
+
+            rxJava               : "io.reactivex.rxjava2:rxjava:$rxJavaVersion",
+            rxAndroid            : "io.reactivex.rxjava2:rxandroid:$rxAndroidVersion",
 
             retrofit             : "com.squareup.retrofit2:retrofit:$retrofitVersion",
             retrofitRxJavaAdapter: "com.squareup.retrofit2:adapter-rxjava2:$retrofitVersion",
             retrofitGsonConverter: "com.squareup.retrofit2:converter-gson:$retrofitVersion",
-            rxJava               : "io.reactivex.rxjava2:rxjava:$rxJavaVersion",
-            rxAndroid            : "io.reactivex.rxjava2:rxandroid:$rxAndroidVersion",
+
+            lifecycleRuntime     : "androidx.lifecycle:lifecycle-runtime:$archVersion",
+            lifecycleExtensions  : "androidx.lifecycle:lifecycle-extensions:$archVersion",
 
             koin                 : "org.koin:koin-android:$koinVersion",
             koinViewModel        : "org.koin:koin-androidx-viewmodel:$koinVersion",
     ]
 
-    appTestDependencies = [
+    testDependencies = [
             jUnit               : "junit:junit:$jUnitVersion"
     ]
 

@@ -7,7 +7,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import br.com.stone.challenge.R
 import br.com.stone.challenge.search.SearchActivity
-import br.com.stone.core.facts.presentation.FactsViewModel
 import kotlinx.android.synthetic.main.activity_facts.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
