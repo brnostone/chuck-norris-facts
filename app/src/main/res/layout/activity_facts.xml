@@ -5,7 +5,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        tools:context=".facts.FactsActivity">
+        tools:context=".feature.facts.FactsActivity">
 
     <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/appbar"
@@ -23,6 +23,8 @@
     <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerFacts"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:padding="4dp"
+            android:clipToPadding="false" />
 
 </LinearLayout>

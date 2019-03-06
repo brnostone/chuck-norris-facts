@@ -1,4 +1,4 @@
-package br.com.stone.challenge.search
+package br.com.stone.challenge.feature.search
 
 import android.content.Context
 import android.content.Intent

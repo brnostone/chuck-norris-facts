@@ -1,13 +1,14 @@
-package br.com.stone.challenge.facts
+package br.com.stone.challenge.feature.facts
 
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ShareCompat
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import br.com.stone.challenge.R
-import br.com.stone.challenge.search.SearchActivity
+import br.com.stone.challenge.feature.search.SearchActivity
 import kotlinx.android.synthetic.main.activity_facts.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -40,7 +41,17 @@ class FactsActivity : AppCompatActivity() {
 
     private fun setupRecycler() = with(recyclerFacts) {
         layoutManager = LinearLayoutManager(context)
-        adapter = FactsAdapter(facts)
+        adapter = FactsAdapter(facts, onClickShare = { fact ->
+            shareUrl(fact.url)
+        })
+    }
+
+    private fun shareUrl(url: String) {
+        ShareCompat.IntentBuilder.from(this)
+            .setType("text/plain")
+            .setChooserTitle(R.string.share_url)
+            .setText(url)
+            .startChooser()
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

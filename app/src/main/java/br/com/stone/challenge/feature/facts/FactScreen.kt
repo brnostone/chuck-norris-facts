@@ -1,4 +1,4 @@
-package br.com.stone.challenge.facts
+package br.com.stone.challenge.feature.facts
 
 import br.com.stone.challenge.R
 

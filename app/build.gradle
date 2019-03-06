@@ -11,6 +11,7 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        vectorDrawables.useSupportLibrary = true
     }
     buildTypes {
         release {
@@ -35,6 +36,7 @@ dependencies {
 
     implementation dependencies.appCompat
     implementation dependencies.recycler
+    implementation dependencies.vectorDrawable
     implementation dependencies.coreKtx
     implementation dependencies.lifecycleRuntime
     implementation dependencies.lifecycleExtensions

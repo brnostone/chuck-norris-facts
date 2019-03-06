@@ -1,4 +1,4 @@
-package br.com.stone.challenge.common
+package br.com.stone.challenge.util
 
 import androidx.lifecycle.ViewModel
 import io.reactivex.disposables.CompositeDisposable

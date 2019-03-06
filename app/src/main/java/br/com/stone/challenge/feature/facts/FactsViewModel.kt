@@ -1,7 +1,7 @@
-package br.com.stone.challenge.facts
+package br.com.stone.challenge.feature.facts
 
 import androidx.lifecycle.MutableLiveData
-import br.com.stone.challenge.common.RxViewModel
+import br.com.stone.challenge.util.RxViewModel
 import br.com.stone.domain.FactsSource
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.rxkotlin.plusAssign

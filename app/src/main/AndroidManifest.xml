@@ -12,7 +12,7 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/AppTheme.NoActionBar">
-        <activity android:name=".facts.FactsActivity">
+        <activity android:name="br.com.stone.challenge.feature.facts.FactsActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
@@ -20,7 +20,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".search.SearchActivity" />
+        <activity android:name="br.com.stone.challenge.feature.search.SearchActivity" />
 
     </application>
 

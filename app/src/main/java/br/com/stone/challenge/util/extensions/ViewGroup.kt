@@ -1,4 +1,4 @@
-package br.com.stone.challenge.common.extensions
+package br.com.stone.challenge.util.extensions
 
 import android.view.LayoutInflater
 import android.view.View
