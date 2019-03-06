@@ -8,7 +8,6 @@ object FactMapper {
 
     fun map(payload: FactPayload): Fact {
         return Fact(
-            id = payload.id,
             url = payload.url,
             text = payload.text
         )

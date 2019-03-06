@@ -1,19 +1,20 @@
 package br.com.stone.challenge.facts
 
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import br.com.stone.domain.Fact
+import br.com.stone.challenge.common.RxViewModel
 import br.com.stone.domain.FactsSource
 import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.rxkotlin.plusAssign
 import io.reactivex.schedulers.Schedulers
 
 
-class FactsViewModel(private val factsSource: FactsSource) : ViewModel() {
+class FactsViewModel(private val factsSource: FactsSource) : RxViewModel() {
 
-    val facts = MutableLiveData<List<Fact>>()
+    val facts = MutableLiveData<List<FactScreen>>()
 
     fun search(query: String) {
-        factsSource.search(query)
+        disposables += factsSource.search(query)
+            .map { FactScreenMapper.map(it) }
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(

@@ -5,6 +5,7 @@ import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.LinearLayoutManager
 import br.com.stone.challenge.R
 import br.com.stone.challenge.search.SearchActivity
 import kotlinx.android.synthetic.main.activity_facts.*
@@ -13,6 +14,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 class FactsActivity : AppCompatActivity() {
 
     private val viewModel: FactsViewModel by viewModel()
+    private val facts = ArrayList<FactScreen>()
 
     companion object {
         private const val RESULT_SEARCH = 123
@@ -24,11 +26,21 @@ class FactsActivity : AppCompatActivity() {
 
         setSupportActionBar(toolbar)
 
-        viewModel.facts.observe(this,  Observer {
-            println(">>> $it")
+        setupRecycler()
+
+        viewModel.facts.observe(this,  Observer { newFacts ->
+            facts.clear()
+            facts += newFacts
+
+            recyclerFacts.adapter?.notifyDataSetChanged()
         })
 
         viewModel.search("dev")
+    }
+
+    private fun setupRecycler() = with(recyclerFacts) {
+        layoutManager = LinearLayoutManager(context)
+        adapter = FactsAdapter(facts)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

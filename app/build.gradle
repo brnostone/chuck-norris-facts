@@ -41,6 +41,7 @@ dependencies {
     implementation dependencies.materialDesign
 
     implementation dependencies.rxJava
+    implementation dependencies.rxKotlin
     implementation dependencies.rxAndroid
 
     implementation dependencies.koin

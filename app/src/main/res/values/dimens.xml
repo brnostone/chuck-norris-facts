@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="fact_text_normal">14sp</dimen>
+    <dimen name="fact_text_big">20sp</dimen>
+
+</resources>
