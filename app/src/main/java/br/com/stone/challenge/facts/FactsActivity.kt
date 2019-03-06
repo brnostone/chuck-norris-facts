@@ -28,7 +28,7 @@ class FactsActivity : AppCompatActivity() {
             println(">>> $it")
         })
 
-        viewModel.search("")
+        viewModel.search("dev")
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
