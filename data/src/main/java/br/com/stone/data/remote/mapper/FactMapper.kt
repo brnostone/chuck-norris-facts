@@ -9,7 +9,8 @@ object FactMapper {
     fun map(payload: FactPayload): Fact {
         return Fact(
             url = payload.url,
-            text = payload.text
+            text = payload.text,
+            categories = payload.categories ?: emptyList()
         )
     }
 

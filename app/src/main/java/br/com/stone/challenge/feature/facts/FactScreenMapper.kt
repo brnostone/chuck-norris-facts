@@ -10,10 +10,20 @@ object FactScreenMapper {
         else
             TextType.NORMAL
 
+        val categories = ArrayList<CategoryScreen>()
+        if (fact.categories.isEmpty())
+            categories += CategoryScreen.Uncategorized
+        else {
+            fact.categories.mapTo(categories) { category ->
+                CategoryScreen.Categorized(category)
+            }
+        }
+
         return FactScreen(
             text = fact.text,
             url = fact.url,
-            textType = textType
+            textType = textType,
+            categories = categories
         )
     }
 
