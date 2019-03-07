@@ -4,6 +4,6 @@ import io.reactivex.Observable
 
 interface FactsSource {
 
-    fun search(term: String): Observable<List<Fact>>
+    fun search(query: String): Observable<List<Fact>>
 
 }

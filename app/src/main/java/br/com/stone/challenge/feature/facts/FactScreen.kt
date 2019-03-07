@@ -8,7 +8,7 @@ enum class TextType(val dimen: Int) {
 }
 
 sealed class CategoryScreen {
-    object Uncategorized : CategoryScreen()
+    object UnCategorized : CategoryScreen()
     class Categorized(val text: String) : CategoryScreen()
 }
 

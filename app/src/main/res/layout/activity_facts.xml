@@ -16,7 +16,7 @@
         <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"/>
 
     </com.google.android.material.appbar.AppBarLayout>
 
@@ -29,14 +29,23 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:padding="4dp"
-                android:clipToPadding="false" />
+                android:clipToPadding="false"/>
 
         <ProgressBar
                 android:id="@+id/progressBar"
                 style="?android:attr/progressBarStyle"
+                android:visibility="gone"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_gravity="center"/>
+
+        <TextView
+                android:id="@+id/txtError"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Error"
+                android:gravity="center"
+                android:background="?android:windowBackground"/>
 
     </FrameLayout>
 

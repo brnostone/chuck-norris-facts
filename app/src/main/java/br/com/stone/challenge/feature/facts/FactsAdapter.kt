@@ -24,7 +24,7 @@ class FactsAdapter(
             fact.categories.forEach { category ->
                 val view = categoryContainer.inflate(R.layout.view_category)
                 view.txtTitle.text = when (category) {
-                    is CategoryScreen.Uncategorized -> context.getString(R.string.uncategorized)
+                    is CategoryScreen.UnCategorized -> context.getString(R.string.uncategorized)
                     is CategoryScreen.Categorized -> category.text
                 }
 

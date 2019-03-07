@@ -6,21 +6,22 @@ import br.com.stone.challenge.feature.common.ViewState
 import br.com.stone.challenge.util.RxViewModel
 import br.com.stone.domain.FactsSource
 import io.reactivex.rxkotlin.plusAssign
-import io.reactivex.schedulers.Schedulers
+import timber.log.Timber
 
 
 class FactsViewModel(private val factsSource: FactsSource) : RxViewModel() {
 
-    val state = MutableLiveData<ViewState<List<FactScreen>>>()
+    val state = MutableLiveData<ViewState<List<FactScreen>>>().apply {
+        value = ViewState.Default
+    }
 
     fun search(query: String) {
         disposables += factsSource.search(query)
                 .map { FactScreenMapper.map(it) }
                 .compose(StateMachine())
-                .subscribeOn(Schedulers.io())
                 .subscribe(
                         { state.postValue(it) },
-                        { it.printStackTrace() }
+                        { Timber.e(it) }
                 )
     }
 

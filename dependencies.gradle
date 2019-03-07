@@ -24,6 +24,8 @@ ext {
     rxAndroidVersion = '2.1.1'
     koinVersion = '1.0.2'
 
+    timberVersion = '4.7.1'
+
     // Test Libraries
     jUnitVersion = '4.12'
 
@@ -49,6 +51,8 @@ ext {
 
             koin                 : "org.koin:koin-android:$koinVersion",
             koinViewModel        : "org.koin:koin-androidx-viewmodel:$koinVersion",
+
+            timber               : "com.jakewharton.timber:timber:$timberVersion",
     ]
 
     testDependencies = [

@@ -13,6 +13,7 @@ import br.com.stone.challenge.feature.common.ViewState
 import br.com.stone.challenge.feature.search.SearchActivity
 import kotlinx.android.synthetic.main.activity_facts.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import timber.log.Timber
 
 class FactsActivity : AppCompatActivity() {
 
@@ -45,9 +46,14 @@ class FactsActivity : AppCompatActivity() {
     private fun bindObserver() {
         viewModel.state.observe(this, Observer { state ->
             when (state) {
+                is ViewState.Default -> {
+
+                }
                 is ViewState.Loading -> showLoading()
-                is ViewState.Done -> hideLoading()
-                is ViewState.Result -> updateList(state.data)
+                is ViewState.Result -> {
+                    hideLoading()
+                    updateList(state.data)
+                }
                 is ViewState.Failed -> showError(state.throwable)
             }
         })
@@ -55,6 +61,7 @@ class FactsActivity : AppCompatActivity() {
 
     private fun showLoading() {
         progressBar.isVisible = true
+        txtError.isVisible = false
     }
 
     private fun hideLoading() {
@@ -69,7 +76,8 @@ class FactsActivity : AppCompatActivity() {
     }
 
     private fun showError(throwable: Throwable) {
-
+        Timber.e(throwable)
+        txtError.isVisible = true
     }
 
     private fun shareUrl(url: String) {
