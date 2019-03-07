@@ -5,9 +5,11 @@ import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ShareCompat
+import androidx.core.view.isVisible
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import br.com.stone.challenge.R
+import br.com.stone.challenge.feature.common.ViewState
 import br.com.stone.challenge.feature.search.SearchActivity
 import kotlinx.android.synthetic.main.activity_facts.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -28,13 +30,7 @@ class FactsActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
 
         setupRecycler()
-
-        viewModel.facts.observe(this,  Observer { newFacts ->
-            facts.clear()
-            facts += newFacts
-
-            recyclerFacts.adapter?.notifyDataSetChanged()
-        })
+        bindObserver()
 
         viewModel.search("dev")
     }
@@ -44,6 +40,36 @@ class FactsActivity : AppCompatActivity() {
         adapter = FactsAdapter(facts, onClickShare = { fact ->
             shareUrl(fact.url)
         })
+    }
+
+    private fun bindObserver() {
+        viewModel.state.observe(this, Observer { state ->
+            when (state) {
+                is ViewState.Loading -> showLoading()
+                is ViewState.Done -> hideLoading()
+                is ViewState.Result -> updateList(state.data)
+                is ViewState.Failed -> showError(state.throwable)
+            }
+        })
+    }
+
+    private fun showLoading() {
+        progressBar.isVisible = true
+    }
+
+    private fun hideLoading() {
+        progressBar.isVisible = false
+    }
+
+    private fun updateList(newFacts: List<FactScreen>) {
+        facts.clear()
+        facts += newFacts
+
+        recyclerFacts.adapter?.notifyDataSetChanged()
+    }
+
+    private fun showError(throwable: Throwable) {
+
     }
 
     private fun shareUrl(url: String) {
