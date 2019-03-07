@@ -33,7 +33,7 @@ class FactsActivity : AppCompatActivity() {
         setupRecycler()
         bindObserver()
 
-        viewModel.search("dev")
+        viewModel.search("")
     }
 
     private fun setupRecycler() = with(recyclerFacts) {
@@ -50,7 +50,7 @@ class FactsActivity : AppCompatActivity() {
 
                 }
                 is ViewState.Loading -> showLoading()
-                is ViewState.Result -> {
+                is ViewState.Success -> {
                     hideLoading()
                     updateList(state.data)
                 }
