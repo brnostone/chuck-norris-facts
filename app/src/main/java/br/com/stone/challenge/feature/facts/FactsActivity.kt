@@ -61,7 +61,7 @@ class FactsActivity : AppCompatActivity() {
 
     private fun showLoading() {
         progressBar.isVisible = true
-        txtError.isVisible = false
+        errorView.isVisible = false
     }
 
     private fun hideLoading() {
@@ -77,7 +77,8 @@ class FactsActivity : AppCompatActivity() {
 
     private fun showError(throwable: Throwable) {
         Timber.e(throwable)
-        txtError.isVisible = true
+        errorView.isVisible = true
+        errorView.setError(throwable)
     }
 
     private fun shareUrl(url: String) {
