@@ -33,7 +33,7 @@ class FactsActivity : AppCompatActivity() {
         setupRecycler()
         bindObserver()
 
-        viewModel.search("")
+        viewModel.search("dev")
     }
 
     private fun setupRecycler() = with(recyclerFacts) {

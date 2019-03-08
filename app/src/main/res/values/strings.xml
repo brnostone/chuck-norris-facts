@@ -4,4 +4,9 @@
 
     <string name="share_url">Share URL</string>
     <string name="uncategorized">Uncategorized</string>
+
+    <string name="error_generic">Unexpected error</string>
+    <string name="error_network">Please check your internet connection</string>
+    <string name="error_server">Internal Server Error</string>
+
 </resources>
