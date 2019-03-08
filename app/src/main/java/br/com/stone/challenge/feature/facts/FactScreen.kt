@@ -9,10 +9,10 @@ enum class TextType(val dimen: Int) {
 
 sealed class CategoryScreen {
     object UnCategorized : CategoryScreen()
-    class Categorized(val text: String) : CategoryScreen()
+    data class Categorized(val text: String) : CategoryScreen()
 }
 
-class FactScreen(
+data class FactScreen(
     val url: String,
     val text: String,
     val textType: TextType,

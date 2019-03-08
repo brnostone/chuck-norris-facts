@@ -21,6 +21,7 @@ android {
     }
 
     testOptions.unitTests.includeAndroidResources = true
+    testOptions.unitTests.returnDefaultValues = true
 
 }
 
@@ -32,6 +33,7 @@ dependencies {
     def testDependencies = rootProject.ext.testDependencies
 
     testImplementation testDependencies.androidTest
+    testImplementation testDependencies.archTest
     testImplementation testDependencies.jUnit
     testImplementation testDependencies.mockito
     testImplementation testDependencies.mockitoKt

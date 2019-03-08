@@ -62,11 +62,14 @@ ext {
 
     testDependencies = [
             androidTest         : "androidx.test:core:$androidTestVersion",
+            archTest            : "androidx.arch.core:core-testing:$archVersion",
+
             jUnit               : "junit:junit:$jUnitVersion",
             mockWebServer       : "com.squareup.okhttp3:mockwebserver:$okHttpVersion",
             mockito             : "org.mockito:mockito-core:$mockitoVersion",
             mockitoKt           : "com.nhaarman.mockitokotlin2:mockito-kotlin:$mockitoKtVersion",
             roboletric          : "org.robolectric:robolectric:$roboletricVersion",
+
             kotlinTest          : "org.jetbrains.kotlin:kotlin-test-junit:$kotlinVersion",
             koinTest            : "org.koin:koin-test:$koinVersion"
     ]
