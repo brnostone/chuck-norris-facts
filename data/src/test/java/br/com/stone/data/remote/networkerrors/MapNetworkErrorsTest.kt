@@ -8,7 +8,6 @@ import okhttp3.ResponseBody
 import org.junit.Test
 import retrofit2.HttpException
 import retrofit2.Response
-import java.lang.RuntimeException
 import java.net.ConnectException
 import java.net.SocketTimeoutException
 import java.net.UnknownHostException

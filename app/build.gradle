@@ -19,6 +19,9 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
+    testOptions.unitTests.includeAndroidResources = true
+
 }
 
 dependencies {
@@ -28,9 +31,13 @@ dependencies {
     def dependencies = rootProject.ext.dependencies
     def testDependencies = rootProject.ext.testDependencies
 
+    testImplementation testDependencies.androidTest
     testImplementation testDependencies.jUnit
     testImplementation testDependencies.mockito
     testImplementation testDependencies.mockitoKt
+    testImplementation testDependencies.roboletric
+    testImplementation testDependencies.kotlinTest
+    testImplementation testDependencies.koinTest
 
     implementation dependencies.kotlin
 

@@ -28,9 +28,11 @@ ext {
     timberVersion = '4.7.1'
 
     // Test Libraries
+    androidTestVersion = '1.0.0'
     jUnitVersion = '4.12'
     mockitoVersion = '2.25.0'
     mockitoKtVersion = '2.1.0'
+    roboletricVersion = '4.2'
 
     dependencies = [
             kotlin               : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion",
@@ -59,10 +61,14 @@ ext {
     ]
 
     testDependencies = [
+            androidTest         : "androidx.test:core:$androidTestVersion",
             jUnit               : "junit:junit:$jUnitVersion",
             mockWebServer       : "com.squareup.okhttp3:mockwebserver:$okHttpVersion",
             mockito             : "org.mockito:mockito-core:$mockitoVersion",
-            mockitoKt           : "com.nhaarman.mockitokotlin2:mockito-kotlin:$mockitoKtVersion"
+            mockitoKt           : "com.nhaarman.mockitokotlin2:mockito-kotlin:$mockitoKtVersion",
+            roboletric          : "org.robolectric:robolectric:$roboletricVersion",
+            kotlinTest          : "org.jetbrains.kotlin:kotlin-test-junit:$kotlinVersion",
+            koinTest            : "org.koin:koin-test:$koinVersion"
     ]
 
 }

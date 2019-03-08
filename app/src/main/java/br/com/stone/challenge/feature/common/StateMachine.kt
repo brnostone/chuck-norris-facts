@@ -7,8 +7,8 @@ import io.reactivex.ObservableTransformer
 sealed class ViewState<out T> {
     object Default : ViewState<Nothing>()
     object Loading : ViewState<Nothing>()
-    class Success<T>(val data: T) : ViewState<T>()
-    class Failed(val throwable: Throwable) : ViewState<Nothing>()
+    data class Success<T>(val data: T) : ViewState<T>()
+    data class Failed(val throwable: Throwable) : ViewState<Nothing>()
 }
 
 class StateMachine<T> : ObservableTransformer<T, ViewState<T>> {
@@ -18,7 +18,6 @@ class StateMachine<T> : ObservableTransformer<T, ViewState<T>> {
                 .map { ViewState.Success(it) as ViewState<T> }
                 .onErrorReturn { ViewState.Failed(it) }
                 .startWith(ViewState.Loading)
-                //.concatWith(Observable.just(ViewState.Done))
     }
 
 }
