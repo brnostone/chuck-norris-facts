@@ -29,8 +29,8 @@ dependencies {
     def testDependencies = rootProject.ext.testDependencies
 
     testImplementation testDependencies.jUnit
-    androidTestImplementation 'androidx.test.ext:junit:1.1.0'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
+    testImplementation testDependencies.mockito
+    testImplementation testDependencies.mockitoKt
 
     implementation dependencies.kotlin
 

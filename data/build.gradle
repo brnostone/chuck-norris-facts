@@ -24,6 +24,9 @@ dependencies {
     def testDependencies = rootProject.ext.testDependencies
 
     testImplementation testDependencies.jUnit
+    testImplementation testDependencies.mockWebServer
+    testImplementation testDependencies.mockito
+    testImplementation testDependencies.mockitoKt
 
     implementation dependencies.kotlin
 

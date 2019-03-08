@@ -16,8 +16,9 @@ ext {
     materialVersion = '1.0.0'
     recyclerVersion = '1.0.0'
     vectorDrawableVersion = '1.0.0'
-
     ktxVersion = '1.0.1'
+
+    okHttpVersion = '3.12.0'
     retrofitVersion = '2.5.0'
     rxJavaVersion = '2.2.7'
     rxKotlinVersion = '2.2.0'
@@ -28,6 +29,8 @@ ext {
 
     // Test Libraries
     jUnitVersion = '4.12'
+    mockitoVersion = '2.25.0'
+    mockitoKtVersion = '2.1.0'
 
     dependencies = [
             kotlin               : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion",
@@ -56,7 +59,10 @@ ext {
     ]
 
     testDependencies = [
-            jUnit               : "junit:junit:$jUnitVersion"
+            jUnit               : "junit:junit:$jUnitVersion",
+            mockWebServer       : "com.squareup.okhttp3:mockwebserver:$okHttpVersion",
+            mockito             : "org.mockito:mockito-core:$mockitoVersion",
+            mockitoKt           : "com.nhaarman.mockitokotlin2:mockito-kotlin:$mockitoKtVersion"
     ]
 
 }
