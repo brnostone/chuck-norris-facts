@@ -21,7 +21,7 @@ class FactScreenMapperTest {
         val fact = FactFactory.create(hasCategory = true)
         val factScreen = FactScreenMapper.map(fact)
 
-        val expected = fact.categories.map { CategoryScreen.Categorized(it) }
+        val expected = fact.categories.map { CategoryScreen.Categorized(it.name) }
 
         assertTrue("should have categories") { factScreen.categories == expected }
     }

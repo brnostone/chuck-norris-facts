@@ -15,7 +15,7 @@ object FactScreenMapper {
             categories += CategoryScreen.UnCategorized
         else {
             fact.categories.mapTo(categories) { category ->
-                CategoryScreen.Categorized(category)
+                CategoryScreen.Categorized(category.name)
             }
         }
 

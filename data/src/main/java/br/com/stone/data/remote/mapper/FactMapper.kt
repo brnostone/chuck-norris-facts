@@ -7,10 +7,12 @@ import br.com.stone.domain.Fact
 object FactMapper {
 
     fun map(payload: FactPayload): Fact {
+        val categories = payload.categories?.let { CategoryMapper.map(it) }
+
         return Fact(
             url = payload.url,
             text = payload.text,
-            categories = payload.categories ?: emptyList()
+            categories = categories ?: emptyList()
         )
     }
 

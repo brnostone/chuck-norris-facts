@@ -11,6 +11,6 @@ class FactPayload {
     lateinit var text: String
 
     @SerializedName("category")
-    var categories: List<String>? = null
+    var categories: List<CategoryPayload>? = null
 
 }

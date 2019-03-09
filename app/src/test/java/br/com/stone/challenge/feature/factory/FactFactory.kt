@@ -1,5 +1,6 @@
 package br.com.stone.challenge.feature.factory
 
+import br.com.stone.domain.Category
 import br.com.stone.domain.Fact
 import java.util.*
 
@@ -19,7 +20,7 @@ object FactFactory {
             repeatText += 10
 
         return Fact(
-            categories = categories,
+            categories = categories.map { Category(it) },
             url = "https://api.chucknorris.io/jokes/$randomId",
             text = "Chuck Norris".repeat(repeatText)
         )
