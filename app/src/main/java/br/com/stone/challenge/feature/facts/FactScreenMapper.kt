@@ -10,12 +10,12 @@ object FactScreenMapper {
         else
             TextType.NORMAL
 
-        val categories = ArrayList<CategoryScreen>()
+        val categories = ArrayList<CategoryFactScreen>()
         if (fact.categories.isEmpty())
-            categories += CategoryScreen.UnCategorized
+            categories += CategoryFactScreen.UnCategorized
         else {
             fact.categories.mapTo(categories) { category ->
-                CategoryScreen.Categorized(category.name)
+                CategoryFactScreen.Categorized(category.name)
             }
         }
 

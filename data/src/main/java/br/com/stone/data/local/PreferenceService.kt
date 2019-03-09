@@ -4,7 +4,7 @@ import android.annotation.SuppressLint
 import android.content.Context
 import br.com.stone.domain.Category
 import io.reactivex.Completable
-import io.reactivex.Single
+import io.reactivex.Observable
 
 @SuppressLint("ApplySharedPref")
 class PreferenceService(context: Context): CacheService {
@@ -17,8 +17,8 @@ class PreferenceService(context: Context): CacheService {
         context.getSharedPreferences("cache", Context.MODE_PRIVATE)
     }
 
-    override fun fetchAll(): Single<List<Category>> {
-        return Single.fromCallable {
+    override fun fetchAll(): Observable<List<Category>> {
+        return Observable.fromCallable {
             sharedPref
                 .getString(CATEGORIES_KEY, null)
                 ?.split("#")

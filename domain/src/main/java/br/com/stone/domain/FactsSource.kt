@@ -6,4 +6,6 @@ interface FactsSource {
 
     fun search(query: String): Observable<List<Fact>>
 
+    fun fetchCategories(): Observable<List<Category>>
+
 }

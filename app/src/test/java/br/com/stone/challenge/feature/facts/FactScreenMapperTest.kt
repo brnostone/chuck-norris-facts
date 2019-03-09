@@ -11,7 +11,7 @@ class FactScreenMapperTest {
         val fact = FactFactory.create(hasCategory = false)
         val factScreen = FactScreenMapper.map(fact)
 
-        val expected = listOf(CategoryScreen.UnCategorized)
+        val expected = listOf(CategoryFactScreen.UnCategorized)
 
         assertTrue("should have uncategorized") { factScreen.categories == expected }
     }
@@ -21,7 +21,7 @@ class FactScreenMapperTest {
         val fact = FactFactory.create(hasCategory = true)
         val factScreen = FactScreenMapper.map(fact)
 
-        val expected = fact.categories.map { CategoryScreen.Categorized(it.name) }
+        val expected = fact.categories.map { CategoryFactScreen.Categorized(it.name) }
 
         assertTrue("should have categories") { factScreen.categories == expected }
     }
@@ -32,7 +32,7 @@ class FactScreenMapperTest {
         val fact = FactFactory.create(bigText = true)
         val factScreen = FactScreenMapper.map(fact)
 
-        assertTrue("should have textType equals to BIG") { factScreen.textType == TextType.NORMAL }
+        assertTrue("should have textType equals to NORMAL") { factScreen.textType == TextType.NORMAL }
     }
 
     @Test
