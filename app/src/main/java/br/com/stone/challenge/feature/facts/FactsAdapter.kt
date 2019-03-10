@@ -10,8 +10,8 @@ import kotlinx.android.synthetic.main.item_adapter_fact.view.*
 import kotlinx.android.synthetic.main.view_category.view.*
 
 class FactsAdapter(
-    private val facts: List<FactScreen>,
-    private val onClickShare: (FactScreen) -> Unit) : RecyclerView.Adapter<FactsAdapter.ViewHolder>() {
+        private val facts: List<FactScreen>,
+        private val onClickShare: (FactScreen) -> Unit) : RecyclerView.Adapter<FactsAdapter.ViewHolder>() {
 
     inner class ViewHolder(parent: ViewGroup) : RecyclerView.ViewHolder(parent.inflate(R.layout.item_adapter_fact)) {
 

@@ -1,4 +1,4 @@
-package br.com.stone.domain
+package br.com.stone.domain.exception
 
 sealed class NetworkException: Exception() {
 

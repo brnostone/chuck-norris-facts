@@ -7,7 +7,7 @@ import br.com.stone.domain.Category
 import br.com.stone.domain.Fact
 import io.reactivex.Observable
 
-class RemoteService(private val chuckApi: ChuckApi) {
+class RemoteDataSource(private val chuckApi: ChuckApi) {
 
     fun search(query: String): Observable<List<Fact>> {
         return chuckApi.search(query)

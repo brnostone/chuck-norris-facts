@@ -4,7 +4,7 @@ import br.com.stone.domain.Category
 
 object CategoryScreenMapper {
 
-    fun map(category: Category): CategoryScreen {
+    private fun map(category: Category): CategoryScreen {
         return CategoryScreen(
             name = category.name
         )

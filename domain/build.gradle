@@ -6,6 +6,7 @@ dependencies {
 
     implementation dependencies.kotlin
     implementation dependencies.rxJava
+    implementation dependencies.koin
 }
 
 sourceCompatibility = JavaVersion.VERSION_1_8

@@ -60,4 +60,6 @@ dependencies {
 
     implementation dependencies.timber
 
+    implementation dependencies.flexbox
+
 }

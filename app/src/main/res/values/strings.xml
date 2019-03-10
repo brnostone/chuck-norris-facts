@@ -8,5 +8,8 @@
     <string name="error_generic">Unexpected error</string>
     <string name="error_network">Please check your internet connection</string>
     <string name="error_server">Internal Server Error</string>
+    <string name="input_search_hint">Enter your search term</string>
+    <string name="title_suggestions">Suggestions</string>
+    <string name="title_past_searches">Past Searches</string>
 
 </resources>

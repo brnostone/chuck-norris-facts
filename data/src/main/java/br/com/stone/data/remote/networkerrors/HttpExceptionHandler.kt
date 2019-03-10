@@ -1,6 +1,6 @@
 package br.com.stone.data.remote.networkerrors
 
-import br.com.stone.domain.RestException
+import br.com.stone.domain.exception.RestException
 import io.reactivex.Observable
 import io.reactivex.ObservableSource
 import io.reactivex.ObservableTransformer

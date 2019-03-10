@@ -7,14 +7,14 @@ import io.reactivex.Completable
 import io.reactivex.Observable
 
 @SuppressLint("ApplySharedPref")
-class PreferenceService(context: Context): CacheService {
+class CategoryLocalDataSource(context: Context) : CategoryLocalSource {
 
     companion object {
         private const val CATEGORIES_KEY = "categories"
     }
 
     private val sharedPref by lazy {
-        context.getSharedPreferences("cache", Context.MODE_PRIVATE)
+        context.getSharedPreferences("category.cache", Context.MODE_PRIVATE)
     }
 
     override fun fetchAll(): Observable<List<Category>> {
@@ -33,12 +33,6 @@ class PreferenceService(context: Context): CacheService {
             editor.putString(CATEGORIES_KEY, items.joinToString("#") { it.name })
 
             editor.commit()
-        }
-    }
-
-    override fun clear(): Completable {
-        return Completable.fromCallable {
-            sharedPref.edit().clear()
         }
     }
 

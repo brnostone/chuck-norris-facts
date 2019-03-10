@@ -27,6 +27,8 @@ ext {
 
     timberVersion = '4.7.1'
 
+    flexboxVersion = '1.1.0'
+
     // Test Libraries
     androidTestVersion = '1.0.0'
     jUnitVersion = '4.12'
@@ -58,6 +60,8 @@ ext {
             koinViewModel        : "org.koin:koin-androidx-viewmodel:$koinVersion",
 
             timber               : "com.jakewharton.timber:timber:$timberVersion",
+
+            flexbox              : "com.google.android:flexbox:$flexboxVersion"
     ]
 
     testDependencies = [

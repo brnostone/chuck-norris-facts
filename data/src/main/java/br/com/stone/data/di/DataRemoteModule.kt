@@ -1,6 +1,6 @@
 package br.com.stone.data.di
 
-import br.com.stone.data.remote.RemoteService
+import br.com.stone.data.remote.RemoteDataSource
 import br.com.stone.data.remote.api.ChuckApi
 import okhttp3.OkHttpClient
 import org.koin.dsl.module.module
@@ -14,7 +14,7 @@ val dataRemoteModule = module {
     single { createOkHttpClient() }
     single { createWebService<ChuckApi>(get(), ChuckApi.API_URL) }
 
-    single { RemoteService(chuckApi = get()) }
+    single { RemoteDataSource(chuckApi = get()) }
 
 }
 

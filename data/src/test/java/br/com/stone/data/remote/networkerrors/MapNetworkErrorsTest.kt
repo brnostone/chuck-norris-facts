@@ -1,7 +1,7 @@
 package br.com.stone.data.remote.networkerrors
 
-import br.com.stone.domain.NetworkException
-import br.com.stone.domain.RestException
+import br.com.stone.domain.exception.NetworkException
+import br.com.stone.domain.exception.RestException
 import io.reactivex.Observable
 import okhttp3.MediaType
 import okhttp3.ResponseBody

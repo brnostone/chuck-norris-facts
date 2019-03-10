@@ -4,8 +4,8 @@ import android.content.Context
 import android.view.LayoutInflater
 import androidx.test.core.app.ApplicationProvider
 import br.com.stone.challenge.R
-import br.com.stone.domain.NetworkException
-import br.com.stone.domain.RestException
+import br.com.stone.domain.exception.NetworkException
+import br.com.stone.domain.exception.RestException
 import kotlinx.android.synthetic.main.view_error.view.*
 import org.junit.Before
 import org.junit.Test

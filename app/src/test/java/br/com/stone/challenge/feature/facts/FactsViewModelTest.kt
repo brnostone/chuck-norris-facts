@@ -4,8 +4,9 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
 import br.com.stone.challenge.feature.common.ViewState
 import br.com.stone.challenge.feature.factory.FactFactory
-import br.com.stone.domain.FactsSource
-import br.com.stone.domain.NetworkException
+import br.com.stone.domain.repository.FactRepository
+import br.com.stone.domain.exception.NetworkException
+import br.com.stone.domain.interactor.SearchFactsUseCase
 import com.nhaarman.mockitokotlin2.*
 import io.reactivex.Observable
 import org.junit.Before
@@ -14,7 +15,7 @@ import org.junit.Test
 
 class FactsViewModelTest {
 
-    private val factsSource: FactsSource = mock()
+    private val searchUseCase: SearchFactsUseCase = mock()
     lateinit var viewModel: FactsViewModel
 
     private val state: Observer<ViewState<List<FactScreen>>> = mock()
@@ -25,7 +26,7 @@ class FactsViewModelTest {
 
     @Before
     fun beforeEachTest() {
-        viewModel = FactsViewModel(factsSource)
+        viewModel = FactsViewModel(searchUseCase)
     }
 
     @Test
@@ -35,7 +36,7 @@ class FactsViewModelTest {
         val provided = listOf(fact)
         val expected = FactScreenMapper.map(provided)
 
-        whenever(factsSource.search(any())).thenReturn(Observable.just(provided))
+        whenever(searchUseCase.execute(any())).thenReturn(Observable.just(provided))
         viewModel.search("dev")
 
         inOrder(state) {
@@ -52,7 +53,7 @@ class FactsViewModelTest {
 
         val expected = NetworkException.ConnectionException
 
-        whenever(factsSource.search(any())).thenReturn(Observable.error(expected))
+        whenever(searchUseCase.execute(any())).thenReturn(Observable.error(expected))
         viewModel.search("dev")
 
         inOrder(state) {

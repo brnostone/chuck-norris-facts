@@ -12,10 +12,10 @@ import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 
-class RemoteServiceTest {
+class RemoteDataSourceTest {
 
     private lateinit var server: MockWebServer
-    private lateinit var remoteService: RemoteService
+    private lateinit var remoteDataSource: RemoteDataSource
 
     @Before
     fun beforeEachTest() {
@@ -28,7 +28,7 @@ class RemoteServiceTest {
             .build()
             .create(ChuckApi::class.java)
 
-        remoteService = RemoteService(chuckApi)
+        remoteDataSource = RemoteDataSource(chuckApi)
     }
 
     @After
@@ -44,7 +44,7 @@ class RemoteServiceTest {
                 .setBody(FilesFromTestResources.getJson("remote/facts_search_correct"))
         )
 
-        remoteService.search(DataFactory.randomString())
+        remoteDataSource.search(DataFactory.randomString())
             .test()
             .assertNoErrors()
             .assertComplete()

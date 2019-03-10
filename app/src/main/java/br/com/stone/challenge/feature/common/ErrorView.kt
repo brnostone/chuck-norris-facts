@@ -9,8 +9,8 @@ import androidx.annotation.StringRes
 import androidx.appcompat.content.res.AppCompatResources
 import br.com.stone.challenge.R
 import br.com.stone.challenge.util.extensions.inflate
-import br.com.stone.domain.NetworkException
-import br.com.stone.domain.RestException
+import br.com.stone.domain.exception.NetworkException
+import br.com.stone.domain.exception.RestException
 import kotlinx.android.synthetic.main.view_error.view.*
 
 class ErrorView @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0) : LinearLayout(context, attrs, defStyleAttr) {

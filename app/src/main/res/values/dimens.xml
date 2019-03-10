@@ -3,5 +3,6 @@
 
     <dimen name="fact_text_normal">14sp</dimen>
     <dimen name="fact_text_big">20sp</dimen>
+    <dimen name="btn_round_size">4dp</dimen>
 
 </resources>
