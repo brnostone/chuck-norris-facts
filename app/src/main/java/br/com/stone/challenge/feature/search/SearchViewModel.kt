@@ -14,7 +14,15 @@ class SearchViewModel(
     private val historicUseCase: GetHistoricListUseCase) : RxViewModel() {
 
     val categoriesState = MutableLiveData<ViewState<List<CategoryScreen>>>()
-    val lastSearchesState = MutableLiveData<ViewState<List<String>>>()
+    val historicState = MutableLiveData<ViewState<List<String>>>()
+
+    val isSearchValid = MutableLiveData<Boolean>()
+
+    var search = ""
+        set(value) {
+            field = value
+            validateSearch()
+        }
 
     fun fetchCategories() {
         disposables += suggestionsUseCase.execute()
@@ -30,9 +38,13 @@ class SearchViewModel(
         disposables += historicUseCase.execute()
                 .compose(StateMachine())
                 .subscribe(
-                        { lastSearchesState.postValue(it) },
+                        { historicState.postValue(it) },
                         { Timber.e(it) }
                 )
+    }
+
+    private fun validateSearch() {
+        isSearchValid.postValue(search.length >= 3)
     }
 
 }

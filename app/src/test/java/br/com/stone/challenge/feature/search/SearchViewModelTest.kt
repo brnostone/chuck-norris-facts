@@ -3,13 +3,14 @@ package br.com.stone.challenge.feature.search
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
 import br.com.stone.challenge.feature.common.ViewState
-import br.com.stone.domain.factory.CategoryFactory
-import br.com.stone.domain.factory.HistoricFactory
+import br.com.stone.challenge.feature.factory.CategoryFactory
+import br.com.stone.challenge.feature.factory.HistoricFactory
 import br.com.stone.domain.exception.NetworkException
 import br.com.stone.domain.interactor.GetHistoricListUseCase
 import br.com.stone.domain.interactor.GetSuggestionListUseCase
 import com.nhaarman.mockitokotlin2.inOrder
 import com.nhaarman.mockitokotlin2.mock
+import com.nhaarman.mockitokotlin2.verify
 import com.nhaarman.mockitokotlin2.whenever
 import io.reactivex.Observable
 import org.junit.Before
@@ -24,6 +25,7 @@ class SearchViewModelTest {
 
     private val categoriesState: Observer<ViewState<List<CategoryScreen>>> = mock()
     private val lastSearchesState: Observer<ViewState<List<String>>> = mock()
+    private val isSearchValid: Observer<Boolean> = mock()
 
     @get:Rule
     val rule = InstantTaskExecutorRule()
@@ -68,7 +70,7 @@ class SearchViewModelTest {
 
     @Test
     fun `should emmit states of historic success`() {
-        viewModel.lastSearchesState.observeForever(lastSearchesState)
+        viewModel.historicState.observeForever(lastSearchesState)
 
         val provided = HistoricFactory.stubList()
         val expected = HistoricFactory.stubList()
@@ -84,7 +86,7 @@ class SearchViewModelTest {
 
     @Test
     fun `should emmit states of historic error`() {
-        viewModel.lastSearchesState.observeForever(lastSearchesState)
+        viewModel.historicState.observeForever(lastSearchesState)
 
         val expected = NetworkException.ConnectionException
 
@@ -95,6 +97,26 @@ class SearchViewModelTest {
             verify(lastSearchesState).onChanged(ViewState.Loading)
             verify(lastSearchesState).onChanged(ViewState.Failed(expected))
         }
+    }
+
+    @Test
+    fun `should emmit isSearchValid false when search is less than 3 characters`() {
+        viewModel.isSearchValid.observeForever(isSearchValid)
+
+        val expected = false
+        viewModel.search = "a"
+
+        verify(isSearchValid).onChanged(expected)
+    }
+
+    @Test
+    fun `should emmit isSearchValid true when search is greater than or equal to 3 characters`() {
+        viewModel.isSearchValid.observeForever(isSearchValid)
+
+        val expected = true
+        viewModel.search = "abc"
+
+        verify(isSearchValid).onChanged(expected)
     }
 
 }

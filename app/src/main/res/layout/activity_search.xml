@@ -33,6 +33,7 @@
             android:orientation="vertical">
 
             <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/inputLayoutSearch"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
@@ -61,18 +62,31 @@
                 android:layout_marginTop="10dp"
                 app:alignContent="stretch"
                 app:alignItems="stretch"
-                app:flexWrap="wrap">
+                app:flexWrap="wrap" />
 
+            <ProgressBar
+                android:id="@+id/progressSuggestions"
+                style="?android:attr/progressBarStyle"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                android:visibility="gone" />
 
-            </com.google.android.flexbox.FlexboxLayout>
+            <br.com.stone.challenge.feature.common.ErrorView
+                android:id="@+id/errorViewSuggestions"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"/>
 
             <TextView
+                android:id="@+id/txtHistoric"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:text="@string/title_past_searches"
                 android:textSize="16sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:visibility="gone" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerHistoric"

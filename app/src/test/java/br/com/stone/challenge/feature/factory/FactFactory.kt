@@ -2,7 +2,6 @@ package br.com.stone.challenge.feature.factory
 
 import br.com.stone.domain.Category
 import br.com.stone.domain.Fact
-import br.com.stone.domain.factory.CategoryFactory
 import java.util.*
 
 object FactFactory {

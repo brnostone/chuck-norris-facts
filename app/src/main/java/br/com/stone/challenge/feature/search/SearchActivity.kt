@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isVisible
 import androidx.core.view.plusAssign
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -12,14 +13,16 @@ import br.com.stone.challenge.R
 import br.com.stone.challenge.feature.common.ViewState
 import br.com.stone.challenge.util.extensions.inflate
 import br.com.stone.challenge.util.extensions.onActionSearch
+import br.com.stone.challenge.util.extensions.textWatcher
 import kotlinx.android.synthetic.main.activity_search.*
 import kotlinx.android.synthetic.main.view_category.view.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import timber.log.Timber
 
 class SearchActivity : AppCompatActivity() {
 
     private val viewModel: SearchViewModel by viewModel()
-    private val lastSearches = ArrayList<String>()
+    private val historic = ArrayList<String>()
 
     companion object {
         const val EXTRA_SEARCH_TERM = "search_term"
@@ -45,7 +48,7 @@ class SearchActivity : AppCompatActivity() {
 
     private fun setupRecycler() = with(recyclerHistoric) {
         layoutManager = LinearLayoutManager(context)
-        adapter = LastSearchAdapter(lastSearches) { text ->
+        adapter = LastSearchAdapter(historic) { text ->
             search(text)
         }
     }
@@ -53,13 +56,16 @@ class SearchActivity : AppCompatActivity() {
     private fun bindObserver() {
         viewModel.categoriesState.observe(this, Observer { state ->
             when (state) {
-                is ViewState.Loading -> {}
-                is ViewState.Success -> makeSuggestionList(state.data)
-                is ViewState.Failed -> {}
+                is ViewState.Loading -> showLoadingSuggestions()
+                is ViewState.Success -> {
+                    hideLoadingSuggestions()
+                    makeSuggestionList(state.data)
+                }
+                is ViewState.Failed -> showError(state.throwable)
             }
         })
 
-        viewModel.lastSearchesState.observe(this, Observer { state ->
+        viewModel.historicState.observe(this, Observer { state ->
             when (state) {
                 is ViewState.Loading -> {}
                 is ViewState.Success -> updateHistoricList(state.data)
@@ -67,9 +73,39 @@ class SearchActivity : AppCompatActivity() {
             }
         })
 
+        viewModel.isSearchValid.observe(this, Observer { isValid ->
+            if (isValid)
+                inputLayoutSearch.isErrorEnabled = false
+            else
+                inputLayoutSearch.error = getString(R.string.error_invalid_term_size)
+        })
+
         inputSearch.onActionSearch {
-            search(inputSearch.text?.toString() ?: "")
+            if (viewModel.isSearchValid.value == true)
+                search(viewModel.search)
         }
+
+        inputSearch.textWatcher {
+            onTextChanged { term, _, _, _ ->
+                viewModel.search = term ?: ""
+            }
+        }
+
+    }
+
+    private fun showLoadingSuggestions() {
+        errorViewSuggestions.isVisible = false
+        progressSuggestions.isVisible = true
+    }
+
+    private fun hideLoadingSuggestions() {
+        progressSuggestions.isVisible = false
+    }
+
+    private fun showError(throwable: Throwable) {
+        Timber.e(throwable)
+        errorViewSuggestions.isVisible = true
+        errorViewSuggestions.setError(throwable)
     }
 
     private fun makeSuggestionList(categories: List<CategoryScreen>) {
@@ -86,8 +122,10 @@ class SearchActivity : AppCompatActivity() {
     }
 
     private fun updateHistoricList(data: List<String>) {
-        lastSearches.clear()
-        lastSearches += data
+        txtHistoric.isVisible = data.isNotEmpty()
+
+        historic.clear()
+        historic += data
 
         recyclerHistoric.adapter?.notifyDataSetChanged()
     }
