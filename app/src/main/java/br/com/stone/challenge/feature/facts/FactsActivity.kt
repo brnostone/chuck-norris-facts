@@ -58,6 +58,8 @@ class FactsActivity : AppCompatActivity() {
         btnSearchFact.setOnClickListener {
             openSearchScreen()
         }
+
+        lifecycle.addObserver(viewModel)
     }
 
     private fun showInitialLayout() {

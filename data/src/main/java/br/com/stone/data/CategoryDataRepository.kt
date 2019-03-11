@@ -5,6 +5,7 @@ import br.com.stone.data.remote.RemoteDataSource
 import br.com.stone.data.remote.networkerrors.MapNetworkErrors
 import br.com.stone.domain.Category
 import br.com.stone.domain.repository.CategoryRepository
+import io.reactivex.Completable
 import io.reactivex.Observable
 
 class CategoryDataRepository(
@@ -22,6 +23,10 @@ class CategoryDataRepository(
             .compose(MapNetworkErrors())
     }
 
+    override fun updateCache(): Completable {
+        return fetchRemoteCategoriesAndSave()
+                .ignoreElements()
+    }
 
     private fun fetchRemoteCategoriesAndSave(): Observable<List<Category>> {
         return remoteDataSource.fetchCategories()
