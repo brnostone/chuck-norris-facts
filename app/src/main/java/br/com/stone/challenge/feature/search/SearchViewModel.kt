@@ -1,6 +1,9 @@
 package br.com.stone.challenge.feature.search
 
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.OnLifecycleEvent
 import br.com.stone.challenge.feature.common.StateMachine
 import br.com.stone.challenge.feature.common.ViewState
 import br.com.stone.challenge.util.RxViewModel
@@ -11,7 +14,7 @@ import timber.log.Timber
 
 class SearchViewModel(
     private val suggestionsUseCase: GetSuggestionListUseCase,
-    private val historicUseCase: GetHistoricListUseCase) : RxViewModel() {
+    private val historicUseCase: GetHistoricListUseCase) : RxViewModel(), LifecycleObserver {
 
     val categoriesState = MutableLiveData<ViewState<List<CategoryScreen>>>()
     val historicState = MutableLiveData<ViewState<List<String>>>()
@@ -24,6 +27,7 @@ class SearchViewModel(
             validateSearch()
         }
 
+    @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
     fun fetchCategories() {
         disposables += suggestionsUseCase.execute()
             .map { CategoryScreenMapper.map(it) }
@@ -34,6 +38,7 @@ class SearchViewModel(
             )
     }
 
+    @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
     fun fetchLastSearches() {
         disposables += historicUseCase.execute()
                 .compose(StateMachine())

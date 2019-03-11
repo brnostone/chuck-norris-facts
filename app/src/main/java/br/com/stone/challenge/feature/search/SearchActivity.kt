@@ -41,9 +41,6 @@ class SearchActivity : AppCompatActivity() {
 
         setupRecycler()
         bindObserver()
-
-        viewModel.fetchCategories()
-        viewModel.fetchLastSearches()
     }
 
     private fun setupRecycler() = with(recyclerHistoric) {
@@ -91,6 +88,7 @@ class SearchActivity : AppCompatActivity() {
             }
         }
 
+        lifecycle.addObserver(viewModel)
     }
 
     private fun showLoadingSuggestions() {
