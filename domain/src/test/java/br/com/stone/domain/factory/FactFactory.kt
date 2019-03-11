@@ -1,8 +1,7 @@
-package br.com.stone.challenge.feature.factory
+package br.com.stone.domain.factory
 
 import br.com.stone.domain.Category
 import br.com.stone.domain.Fact
-import br.com.stone.domain.factory.CategoryFactory
 import java.util.*
 
 object FactFactory {
@@ -24,6 +23,13 @@ object FactFactory {
             categories = categories,
             url = "https://api.chucknorris.io/jokes/$randomId",
             text = "Chuck Norris".repeat(repeatText)
+        )
+    }
+
+    fun stubList() = (1..20).map {
+        stub(
+            hasCategory = random.nextBoolean(),
+            bigText = random.nextBoolean()
         )
     }
 

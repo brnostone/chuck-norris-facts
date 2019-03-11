@@ -3,8 +3,7 @@ package br.com.stone.challenge.feature.facts
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
 import br.com.stone.challenge.feature.common.ViewState
-import br.com.stone.challenge.feature.factory.FactFactory
-import br.com.stone.domain.repository.FactRepository
+import br.com.stone.domain.factory.FactFactory
 import br.com.stone.domain.exception.NetworkException
 import br.com.stone.domain.interactor.SearchFactsUseCase
 import com.nhaarman.mockitokotlin2.*
@@ -19,7 +18,7 @@ class FactsViewModelTest {
     lateinit var viewModel: FactsViewModel
 
     private val state: Observer<ViewState<List<FactScreen>>> = mock()
-    private val fact = FactFactory.create()
+    private val fact = FactFactory.stub()
 
     @get:Rule
     val rule = InstantTaskExecutorRule()
