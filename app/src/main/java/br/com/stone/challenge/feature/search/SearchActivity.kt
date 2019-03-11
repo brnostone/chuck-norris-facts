@@ -22,6 +22,8 @@ class SearchActivity : AppCompatActivity() {
     private val lastSearches = ArrayList<String>()
 
     companion object {
+        const val EXTRA_SEARCH_TERM = "search_term"
+
         fun launchIntent(context: Context): Intent {
             return Intent(context, SearchActivity::class.java)
         }
@@ -91,7 +93,9 @@ class SearchActivity : AppCompatActivity() {
     }
 
     private fun search(term: String) {
-        println(">>> term: $term")
+        intent.putExtra(EXTRA_SEARCH_TERM, term)
+        setResult(RESULT_OK, intent)
+        finish()
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {

@@ -38,6 +38,36 @@
             android:layout_gravity="center"
             android:visibility="gone" />
 
+        <LinearLayout
+            android:id="@+id/emptyLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/chucknorris" />
+
+            <TextView
+                android:id="@+id/txtEmptyTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="@string/text_welcome" />
+
+            <Button
+                android:id="@+id/btnSearchFact"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/button_search_fact"
+                android:textColor="@color/colorAccent" />
+
+        </LinearLayout>
+
         <br.com.stone.challenge.feature.common.ErrorView
             android:id="@+id/errorView"
             android:layout_width="match_parent"

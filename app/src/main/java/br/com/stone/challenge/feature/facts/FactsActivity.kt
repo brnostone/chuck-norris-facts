@@ -1,5 +1,6 @@
 package br.com.stone.challenge.feature.facts
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -32,8 +33,6 @@ class FactsActivity : AppCompatActivity() {
 
         setupRecycler()
         bindObserver()
-
-        viewModel.search("dev")
     }
 
     private fun setupRecycler() = with(recyclerFacts) {
@@ -46,9 +45,7 @@ class FactsActivity : AppCompatActivity() {
     private fun bindObserver() {
         viewModel.state.observe(this, Observer { state ->
             when (state) {
-                is ViewState.Default -> {
-
-                }
+                is ViewState.Default -> showInitialLayout()
                 is ViewState.Loading -> showLoading()
                 is ViewState.Success -> {
                     hideLoading()
@@ -57,11 +54,21 @@ class FactsActivity : AppCompatActivity() {
                 is ViewState.Failed -> showError(state.throwable)
             }
         })
+
+        btnSearchFact.setOnClickListener {
+            openSearchScreen()
+        }
+    }
+
+    private fun showInitialLayout() {
+        emptyLayout.isVisible = true
+        txtEmptyTitle.setText(R.string.text_welcome)
     }
 
     private fun showLoading() {
         progressBar.isVisible = true
         errorView.isVisible = false
+        emptyLayout.isVisible = false
     }
 
     private fun hideLoading() {
@@ -69,6 +76,11 @@ class FactsActivity : AppCompatActivity() {
     }
 
     private fun updateList(newFacts: List<FactScreen>) {
+        if (newFacts.isEmpty()) {
+            emptyLayout.isVisible = true
+            txtEmptyTitle.setText(R.string.text_no_results)
+        }
+
         facts.clear()
         facts += newFacts
 
@@ -89,6 +101,11 @@ class FactsActivity : AppCompatActivity() {
             .startChooser()
     }
 
+    private fun openSearchScreen() {
+        val intent = SearchActivity.launchIntent(this)
+        startActivityForResult(intent, RESULT_SEARCH)
+    }
+
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.menu_facts, menu)
         return true
@@ -96,12 +113,23 @@ class FactsActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         if (item?.itemId == R.id.action_search) {
-            val intent = SearchActivity.launchIntent(this)
-            startActivityForResult(intent, RESULT_SEARCH)
+            openSearchScreen()
             return true
         }
 
         return super.onOptionsItemSelected(item)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if (resultCode == RESULT_OK) {
+            if (requestCode == RESULT_SEARCH) {
+                data?.getStringExtra(SearchActivity.EXTRA_SEARCH_TERM)?.let { term ->
+                    viewModel.search(term)
+                }
+            }
+        }
     }
 
 }
