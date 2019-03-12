@@ -1,10 +1,10 @@
 package br.com.stone.challenge.feature.screen
 
 import android.view.View
-import androidx.test.espresso.matcher.ViewMatchers
 import androidx.test.espresso.matcher.ViewMatchers.withId
 import br.com.stone.challenge.R
 import com.agoda.kakao.common.views.KView
+import com.agoda.kakao.image.KImageView
 import com.agoda.kakao.recycler.KRecyclerItem
 import com.agoda.kakao.recycler.KRecyclerView
 import com.agoda.kakao.screen.Screen
@@ -19,6 +19,10 @@ class FactsScreen: Screen<FactsScreen>() {
     val emptyLayout = KView { withId(R.id.emptyLayout) }
     val txtEmptyTitle = KTextView { withId(R.id.txtEmptyTitle) }
     val btnSearchFact = KButton { withId(R.id.btnSearchFact) }
+
+    val imgViewError = KImageView(withId(R.id.errorView)) { withId(R.id.imgViewError) }
+    val txtViewError = KTextView(withId(R.id.errorView)) { withId(R.id.txtViewError) }
+
 
     class Item(parent: Matcher<View>) : KRecyclerItem<Item>(parent) {
         val txtDescription = KTextView(parent) { withId(R.id.txtDescription) }

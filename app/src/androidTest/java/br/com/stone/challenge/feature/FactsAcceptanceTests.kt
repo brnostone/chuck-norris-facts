@@ -22,18 +22,14 @@ class FactsAcceptanceTests: BaseTest<FactsActivity>(FactsActivity::class) {
         startActivity()
 
         onScreen<FactsScreen> {
-            emptyLayout {
-                isVisible()
-            }
+            emptyLayout { isVisible() }
 
             txtEmptyTitle {
                 isVisible()
                 hasText(R.string.text_welcome)
             }
 
-            btnSearchFact {
-                click()
-            }
+            btnSearchFact { click() }
         }
     }
 
@@ -53,22 +49,16 @@ class FactsAcceptanceTests: BaseTest<FactsActivity>(FactsActivity::class) {
 
         onScreen<SearchScreen> {
             inputLayoutSearch {
-                edit {
-                    typeText("test")
-                }
+                edit { typeText("test") }
 
                 isErrorDisabled()
 
-                edit {
-                    pressImeAction()
-                }
+                edit { pressImeAction() }
             }
         }
 
         onScreen<FactsScreen> {
-            emptyLayout {
-                isGone()
-            }
+            emptyLayout { isGone() }
 
             recyclerFacts {
                 isVisible()
@@ -86,16 +76,12 @@ class FactsAcceptanceTests: BaseTest<FactsActivity>(FactsActivity::class) {
         startActivity()
 
         onScreen<FactsScreen> {
-            btnSearchFact {
-                click()
-            }
+            btnSearchFact { click() }
         }
 
         onScreen<SearchScreen> {
             inputLayoutSearch {
-                edit {
-                    typeText("a")
-                }
+                edit { typeText("a") }
 
                 isErrorEnabled()
                 hasError("This field must have more characters")
@@ -112,9 +98,7 @@ class FactsAcceptanceTests: BaseTest<FactsActivity>(FactsActivity::class) {
         startActivity()
 
         onScreen<FactsScreen> {
-            btnSearchFact {
-                click()
-            }
+            btnSearchFact { click() }
         }
 
         onScreen<SearchScreen> {
@@ -126,9 +110,7 @@ class FactsAcceptanceTests: BaseTest<FactsActivity>(FactsActivity::class) {
         }
 
         onScreen<FactsScreen> {
-            emptyLayout {
-                isGone()
-            }
+            emptyLayout { isGone() }
 
             recyclerFacts {
                 isVisible()
@@ -136,6 +118,94 @@ class FactsAcceptanceTests: BaseTest<FactsActivity>(FactsActivity::class) {
             }
         }
     }
+
+    @Test
+    fun acceptNetworkError() {
+        mockServer.simulate {
+            factsNetworkError()
+            categoriesCorrect()
+        }
+
+        startActivity()
+
+        onScreen<FactsScreen> {
+            btnSearchFact { click() }
+        }
+
+        onScreen<SearchScreen> {
+            inputLayoutSearch {
+                edit {
+                    typeText("test")
+                    pressImeAction()
+                }
+            }
+        }
+
+        onScreen<FactsScreen> {
+            errorView { isVisible() }
+            txtViewError { hasText(R.string.error_network) }
+            imgViewError { hasDrawable(R.drawable.ic_network_error) }
+        }
+    }
+
+    @Test
+    fun acceptServerError() {
+        mockServer.simulate {
+            factsServerError()
+            categoriesCorrect()
+        }
+
+        startActivity()
+
+        onScreen<FactsScreen> {
+            btnSearchFact { click() }
+        }
+
+        onScreen<SearchScreen> {
+            inputLayoutSearch {
+                edit {
+                    typeText("test")
+                    pressImeAction()
+                }
+            }
+        }
+
+        onScreen<FactsScreen> {
+            errorView { isVisible() }
+            txtViewError { hasText(R.string.error_server) }
+            imgViewError { hasDrawable(R.drawable.ic_server_error) }
+        }
+    }
+
+    @Test
+    fun acceptGenericError() {
+        mockServer.simulate {
+            factsGenericError()
+            categoriesCorrect()
+        }
+
+        startActivity()
+
+        onScreen<FactsScreen> {
+            btnSearchFact { click() }
+        }
+
+        onScreen<SearchScreen> {
+            inputLayoutSearch {
+                edit {
+                    typeText("test")
+                    pressImeAction()
+                }
+            }
+        }
+
+        onScreen<FactsScreen> {
+            errorView { isVisible() }
+            txtViewError { hasText(R.string.error_generic) }
+            imgViewError { hasDrawable(R.drawable.ic_generic_error) }
+        }
+    }
+
 /*
     @Test
     fun acceptSuggestions() {
