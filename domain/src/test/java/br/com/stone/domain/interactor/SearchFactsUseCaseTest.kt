@@ -1,8 +1,8 @@
 package br.com.stone.domain.interactor
 
-import br.com.stone.domain.factory.FactFactory
 import br.com.stone.domain.repository.FactRepository
 import br.com.stone.domain.repository.HistoricRepository
+import br.com.stone.test.factory.FactFactory
 import com.nhaarman.mockitokotlin2.any
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.verify

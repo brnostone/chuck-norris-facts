@@ -1,7 +1,7 @@
 package br.com.stone.domain.interactor
 
-import br.com.stone.domain.factory.HistoricFactory
 import br.com.stone.domain.repository.HistoricRepository
+import br.com.stone.test.factory.HistoricFactory
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.whenever
 import io.reactivex.Observable

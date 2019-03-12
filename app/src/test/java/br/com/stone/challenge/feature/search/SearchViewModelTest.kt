@@ -3,11 +3,11 @@ package br.com.stone.challenge.feature.search
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
 import br.com.stone.challenge.feature.common.ViewState
-import br.com.stone.challenge.feature.factory.CategoryFactory
-import br.com.stone.challenge.feature.factory.HistoricFactory
 import br.com.stone.domain.exception.NetworkException
 import br.com.stone.domain.interactor.GetHistoricListUseCase
 import br.com.stone.domain.interactor.GetSuggestionListUseCase
+import br.com.stone.test.factory.CategoryFactory
+import br.com.stone.test.factory.HistoricFactory
 import com.nhaarman.mockitokotlin2.inOrder
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.verify

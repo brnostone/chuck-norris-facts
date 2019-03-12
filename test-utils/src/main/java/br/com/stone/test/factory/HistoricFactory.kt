@@ -1,4 +1,4 @@
-package br.com.stone.domain.factory
+package br.com.stone.test.factory
 
 object HistoricFactory {
 

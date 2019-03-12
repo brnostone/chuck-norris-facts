@@ -1,7 +1,7 @@
 package br.com.stone.domain.interactor
 
-import br.com.stone.domain.factory.CategoryFactory
 import br.com.stone.domain.repository.CategoryRepository
+import br.com.stone.test.factory.CategoryFactory
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.whenever
 import io.reactivex.Observable

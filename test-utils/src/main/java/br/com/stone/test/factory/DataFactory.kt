@@ -1,4 +1,4 @@
-package br.com.stone.data.factory
+package br.com.stone.test.factory
 
 import java.util.*
 import java.util.concurrent.ThreadLocalRandom

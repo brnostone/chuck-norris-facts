@@ -1,6 +1,6 @@
 package br.com.stone.challenge.feature.facts
 
-import br.com.stone.challenge.feature.factory.FactFactory
+import br.com.stone.test.factory.FactFactory
 import org.junit.Test
 import kotlin.test.assertTrue
 

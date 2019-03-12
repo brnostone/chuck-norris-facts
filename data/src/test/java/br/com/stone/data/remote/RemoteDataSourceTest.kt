@@ -1,8 +1,8 @@
 package br.com.stone.data.remote
 
 import br.com.stone.data.remote.api.ChuckApi
-import br.com.stone.data.factory.DataFactory
 import br.com.stone.data.util.FilesFromTestResources
+import br.com.stone.test.factory.DataFactory
 import okhttp3.mockwebserver.MockResponse
 import okhttp3.mockwebserver.MockWebServer
 import org.junit.After
@@ -45,6 +45,20 @@ class RemoteDataSourceTest {
         )
 
         remoteDataSource.search(DataFactory.randomString())
+            .test()
+            .assertNoErrors()
+            .assertComplete()
+    }
+
+    @Test
+    fun `should retrieve categories correctly`() {
+        server.enqueue(
+            MockResponse()
+                .setResponseCode(200)
+                .setBody(FilesFromTestResources.getJson("remote/categories_correct"))
+        )
+
+        remoteDataSource.fetchCategories()
             .test()
             .assertNoErrors()
             .assertComplete()

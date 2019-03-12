@@ -1,6 +1,7 @@
 package br.com.stone.data.di
 
 import br.com.stone.data.remote.RemoteDataSource
+import br.com.stone.data.remote.RemoteSource
 import br.com.stone.data.remote.api.ChuckApi
 import okhttp3.OkHttpClient
 import org.koin.dsl.module.module
@@ -11,12 +12,15 @@ import java.util.concurrent.TimeUnit
 
 val dataRemoteModule = module {
 
-    factory("api_url") { ChuckApi.API_URL }
+    factory { createOkHttpClient() }
+    single {
+        createWebService<ChuckApi>(
+            okHttpClient = get(),
+            url = ChuckApi.API_URL
+        )
+    }
 
-    single { createOkHttpClient() }
-    single { createWebService<ChuckApi>(get(), get("api_url")) }
-
-    single { RemoteDataSource(chuckApi = get()) }
+    factory<RemoteSource> { RemoteDataSource(chuckApi = get()) }
 
 }
 

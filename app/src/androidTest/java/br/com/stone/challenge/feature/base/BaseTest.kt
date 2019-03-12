@@ -5,6 +5,9 @@ import android.content.Intent
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.rule.ActivityTestRule
 import br.com.stone.challenge.mock.MockServer
+import br.com.stone.data.FactDataRepository
+import br.com.stone.data.remote.RemoteDataSource
+import br.com.stone.domain.repository.FactRepository
 import org.junit.Before
 import org.junit.Rule
 import org.koin.dsl.module.module
@@ -19,7 +22,7 @@ open class BaseTest<T: Activity> (klass: KClass<T>) {
     val activityRule = ActivityTestRule(klass.java, true, false)
 
     @Before
-    fun init() {
+    fun setup() {
         val mockModule = module {
             factory(override = true) {
                 mockServer.getMock()

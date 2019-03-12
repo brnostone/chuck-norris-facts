@@ -1,4 +1,4 @@
-package br.com.stone.challenge.feature.factory
+package br.com.stone.test.factory
 
 import br.com.stone.domain.Category
 import br.com.stone.domain.Fact
@@ -23,6 +23,13 @@ object FactFactory {
             categories = categories,
             url = "https://api.chucknorris.io/jokes/$randomId",
             text = "Chuck Norris".repeat(repeatText)
+        )
+    }
+
+    fun stubList() = (1..20).map {
+        stub(
+            hasCategory = random.nextBoolean(),
+            bigText = random.nextBoolean()
         )
     }
 

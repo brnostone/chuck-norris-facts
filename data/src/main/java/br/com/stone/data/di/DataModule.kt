@@ -10,20 +10,20 @@ import org.koin.dsl.module.module
 
 val repositoryModule = module {
 
-    single<FactRepository> {
+    factory<FactRepository> {
         FactDataRepository(
-            remoteDataSource = get()
+            remoteSource = get()
         )
     }
 
-    single<CategoryRepository> {
+    factory<CategoryRepository> {
         CategoryDataRepository(
             categoryLocalSource = get(),
-            remoteDataSource = get()
+            remoteSource = get()
         )
     }
 
-    single<HistoricRepository> {
+    factory<HistoricRepository> {
         HistoricDataRepository(
             historicLocalSource = get()
         )

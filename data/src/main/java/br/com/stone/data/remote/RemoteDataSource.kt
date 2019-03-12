@@ -7,14 +7,14 @@ import br.com.stone.domain.Category
 import br.com.stone.domain.Fact
 import io.reactivex.Observable
 
-class RemoteDataSource(private val chuckApi: ChuckApi) {
+class RemoteDataSource(private val chuckApi: ChuckApi): RemoteSource {
 
-    fun search(query: String): Observable<List<Fact>> {
+    override fun search(query: String): Observable<List<Fact>> {
         return chuckApi.search(query)
             .map { FactMapper.map(it) }
     }
 
-    fun fetchCategories(): Observable<List<Category>> {
+    override fun fetchCategories(): Observable<List<Category>> {
         return chuckApi.fetchCategories()
             .map { CategoryMapper.map(it) }
     }

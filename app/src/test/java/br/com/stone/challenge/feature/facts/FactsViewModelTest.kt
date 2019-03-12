@@ -3,10 +3,10 @@ package br.com.stone.challenge.feature.facts
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
 import br.com.stone.challenge.feature.common.ViewState
-import br.com.stone.challenge.feature.factory.FactFactory
 import br.com.stone.domain.exception.NetworkException
 import br.com.stone.domain.interactor.SearchFactsUseCase
 import br.com.stone.domain.interactor.UpdateSuggestionsCacheUseCase
+import br.com.stone.test.factory.FactFactory
 import com.nhaarman.mockitokotlin2.*
 import io.reactivex.Completable
 import io.reactivex.Observable

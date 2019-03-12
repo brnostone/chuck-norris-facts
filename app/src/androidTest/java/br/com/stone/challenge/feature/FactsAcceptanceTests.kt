@@ -143,7 +143,7 @@ class FactsAcceptanceTests: BaseTest<FactsActivity>(FactsActivity::class) {
         }
     }
 
-    @Test
+    /*@Test
     fun acceptShareFact() {
         mockServer.simulate {
             allCorrect()
@@ -171,7 +171,7 @@ class FactsAcceptanceTests: BaseTest<FactsActivity>(FactsActivity::class) {
                 }
             }
         }
-    }
+    }*/
 
     @Test
     fun acceptNetworkError() {

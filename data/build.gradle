@@ -19,6 +19,7 @@ android {
 
 dependencies {
     implementation project(path: ':domain')
+    testImplementation project(path: ':test-utils')
 
     def dependencies = rootProject.ext.dependencies
     def testDependencies = rootProject.ext.testDependencies
@@ -27,6 +28,11 @@ dependencies {
     testImplementation testDependencies.mockWebServer
     testImplementation testDependencies.mockito
     testImplementation testDependencies.mockitoKt
+
+    androidTestImplementation testDependencies.espressoCore
+    androidTestImplementation testDependencies.androidTestRunner
+    androidTestImplementation testDependencies.androidTestRules
+    androidTestImplementation testDependencies.androidTestExt
 
     implementation dependencies.kotlin
 

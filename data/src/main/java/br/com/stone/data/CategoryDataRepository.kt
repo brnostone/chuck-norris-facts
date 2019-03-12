@@ -1,7 +1,7 @@
 package br.com.stone.data
 
 import br.com.stone.data.local.CategoryLocalSource
-import br.com.stone.data.remote.RemoteDataSource
+import br.com.stone.data.remote.RemoteSource
 import br.com.stone.data.remote.networkerrors.MapNetworkErrors
 import br.com.stone.domain.Category
 import br.com.stone.domain.repository.CategoryRepository
@@ -10,7 +10,7 @@ import io.reactivex.Observable
 
 class CategoryDataRepository(
     private val categoryLocalSource: CategoryLocalSource,
-    private val remoteDataSource: RemoteDataSource): CategoryRepository {
+    private val remoteSource: RemoteSource): CategoryRepository {
 
     override fun fetchAll(): Observable<List<Category>> {
         return categoryLocalSource.fetchAll()
@@ -29,7 +29,7 @@ class CategoryDataRepository(
     }
 
     private fun fetchRemoteCategoriesAndSave(): Observable<List<Category>> {
-        return remoteDataSource.fetchCategories()
+        return remoteSource.fetchCategories()
             .flatMapSingle { categoryLocalSource.save(it).toSingleDefault(it) }
     }
 
