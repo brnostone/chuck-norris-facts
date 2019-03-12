@@ -6,7 +6,6 @@ import br.com.stone.challenge.feature.base.BaseTest
 import br.com.stone.challenge.feature.facts.FactsActivity
 import br.com.stone.challenge.feature.screen.FactsScreen
 import br.com.stone.challenge.feature.screen.SearchScreen
-import com.agoda.kakao.screen.Screen.Companion.idle
 import com.agoda.kakao.screen.Screen.Companion.onScreen
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -170,8 +169,6 @@ class FactsAcceptanceTests: BaseTest<FactsActivity>(FactsActivity::class) {
                 firstChild<FactsScreen.Item> {
                     btnShare.click()
                 }
-
-                idle(1000)
             }
         }
     }

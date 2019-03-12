@@ -2,11 +2,15 @@ package br.com.stone.data.local
 
 import android.annotation.SuppressLint
 import android.content.Context
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 import io.reactivex.Completable
 import io.reactivex.Observable
 
 @SuppressLint("ApplySharedPref")
 class HistoricLocalDataSource(context: Context) : HistoricLocalSource {
+
+    private val gson by lazy { Gson() }
 
     companion object {
         private const val HISTORIC_KEY = "historic"
@@ -18,9 +22,8 @@ class HistoricLocalDataSource(context: Context) : HistoricLocalSource {
 
     override fun fetchAll(): Observable<List<String>> {
         return Observable.fromCallable {
-            sharedPref
-                .getString(HISTORIC_KEY, null)
-                ?.split("#") ?: emptyList()
+            val savedData = sharedPref.getString(HISTORIC_KEY, "[]")
+            gson.fromJson<List<String>>(savedData, object : TypeToken<List<String>>() {}.type)
         }
     }
 
@@ -37,11 +40,12 @@ class HistoricLocalDataSource(context: Context) : HistoricLocalSource {
 
     private fun saveHistoric(historic: List<String>) : Completable {
         return Completable.fromCallable {
-            val editor = sharedPref.edit()
+            val saveData = gson.toJson(historic)
 
-            editor.putString(HISTORIC_KEY, historic.joinToString("#"))
-
-            editor.commit()
+            sharedPref.edit()
+                .putString(HISTORIC_KEY, saveData)
+                .commit()
         }
     }
+
 }
