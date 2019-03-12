@@ -78,10 +78,10 @@ class FactsActivity : AppCompatActivity() {
     }
 
     private fun updateList(newFacts: List<FactScreen>) {
-        if (newFacts.isEmpty()) {
-            emptyLayout.isVisible = true
-            txtEmptyTitle.setText(R.string.text_no_results)
-        }
+        emptyLayout.isVisible = newFacts.isEmpty()
+        txtEmptyTitle.setText(R.string.text_no_results)
+
+        recyclerFacts.scrollToPosition(0)
 
         facts.clear()
         facts += newFacts

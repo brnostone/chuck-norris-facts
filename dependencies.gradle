@@ -19,6 +19,7 @@ ext {
     ktxVersion = '1.0.1'
 
     okHttpVersion = '3.12.0'
+    gsonVersion = '2.5.0'
     retrofitVersion = '2.5.0'
     rxJavaVersion = '2.2.7'
     rxKotlinVersion = '2.2.0'
@@ -30,11 +31,16 @@ ext {
     flexboxVersion = '1.1.0'
 
     // Test Libraries
-    androidTestVersion = '1.0.0'
+    androidTestVersion = '1.1.0'
     jUnitVersion = '4.12'
     mockitoVersion = '2.25.0'
     mockitoKtVersion = '2.1.0'
+    dexmakerVersion = '2.21.0'
     roboletricVersion = '4.2'
+
+    espressoVersion = '3.1.0'
+
+    kakaoVersion = '2.0.0'
 
     dependencies = [
             kotlin               : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion",
@@ -49,6 +55,7 @@ ext {
             rxKotlin             : "io.reactivex.rxjava2:rxkotlin:$rxKotlinVersion",
             rxAndroid            : "io.reactivex.rxjava2:rxandroid:$rxAndroidVersion",
 
+            gson                 : "com.google.code.gson:gson:$gsonVersion",
             retrofit             : "com.squareup.retrofit2:retrofit:$retrofitVersion",
             retrofitRxJavaAdapter: "com.squareup.retrofit2:adapter-rxjava2:$retrofitVersion",
             retrofitGsonConverter: "com.squareup.retrofit2:converter-gson:$retrofitVersion",
@@ -70,12 +77,22 @@ ext {
 
             jUnit               : "junit:junit:$jUnitVersion",
             mockWebServer       : "com.squareup.okhttp3:mockwebserver:$okHttpVersion",
+
             mockito             : "org.mockito:mockito-core:$mockitoVersion",
             mockitoKt           : "com.nhaarman.mockitokotlin2:mockito-kotlin:$mockitoKtVersion",
+            mockitoDexmaker     : "com.linkedin.dexmaker:dexmaker-mockito:$dexmakerVersion",
+
             roboletric          : "org.robolectric:robolectric:$roboletricVersion",
 
             kotlinTest          : "org.jetbrains.kotlin:kotlin-test-junit:$kotlinVersion",
-            koinTest            : "org.koin:koin-test:$koinVersion"
+            koinTest            : "org.koin:koin-test:$koinVersion",
+
+            espressoCore        : "androidx.test.espresso:espresso-core:$espressoVersion",
+            androidTestRunner   : "androidx.test:runner:$androidTestVersion",
+            androidTestRules    : "androidx.test:rules:$androidTestVersion",
+            androidTestExt      : "androidx.test.ext:junit:$androidTestVersion",
+
+            kakao                : "com.agoda.kakao:kakao:$kakaoVersion"
     ]
 
 }

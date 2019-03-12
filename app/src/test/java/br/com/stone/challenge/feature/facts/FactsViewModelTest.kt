@@ -6,7 +6,9 @@ import br.com.stone.challenge.feature.common.ViewState
 import br.com.stone.challenge.feature.factory.FactFactory
 import br.com.stone.domain.exception.NetworkException
 import br.com.stone.domain.interactor.SearchFactsUseCase
+import br.com.stone.domain.interactor.UpdateSuggestionsCacheUseCase
 import com.nhaarman.mockitokotlin2.*
+import io.reactivex.Completable
 import io.reactivex.Observable
 import org.junit.Before
 import org.junit.Rule
@@ -15,6 +17,7 @@ import org.junit.Test
 class FactsViewModelTest {
 
     private val searchUseCase: SearchFactsUseCase = mock()
+    private val updateSuggestionsUseCase: UpdateSuggestionsCacheUseCase = mock()
     lateinit var viewModel: FactsViewModel
 
     private val state: Observer<ViewState<List<FactScreen>>> = mock()
@@ -25,7 +28,10 @@ class FactsViewModelTest {
 
     @Before
     fun beforeEachTest() {
-        viewModel = FactsViewModel(searchUseCase)
+        viewModel = FactsViewModel(
+                searchUseCase = searchUseCase,
+                updateSuggestionsUseCase = updateSuggestionsUseCase
+        )
     }
 
     @Test
@@ -45,7 +51,6 @@ class FactsViewModelTest {
         }
     }
 
-
     @Test
     fun `should emmit states of error`() {
         viewModel.state.observeForever(state)
@@ -60,6 +65,15 @@ class FactsViewModelTest {
             verify(state).onChanged(ViewState.Loading)
             verify(state).onChanged(ViewState.Failed(expected))
         }
+    }
+
+    @Test
+    fun `should call update suggestions cache`() {
+        whenever(updateSuggestionsUseCase.execute()).thenReturn(Completable.complete())
+
+        viewModel.updateSuggestions()
+
+        verify(updateSuggestionsUseCase).execute()
     }
 
 }

@@ -20,8 +20,13 @@ android {
         }
     }
 
-    testOptions.unitTests.includeAndroidResources = true
-    testOptions.unitTests.returnDefaultValues = true
+    testOptions {
+        animationsDisabled = true
+        unitTests {
+            includeAndroidResources = true
+            returnDefaultValues = true
+        }
+    }
 
 }
 
@@ -40,6 +45,16 @@ dependencies {
     testImplementation testDependencies.roboletric
     testImplementation testDependencies.kotlinTest
     testImplementation testDependencies.koinTest
+
+    androidTestImplementation testDependencies.espressoCore
+    androidTestImplementation testDependencies.androidTestRunner
+    androidTestImplementation testDependencies.androidTestRules
+    androidTestImplementation testDependencies.androidTestExt
+    androidTestImplementation testDependencies.mockito
+    androidTestImplementation testDependencies.mockitoKt
+    androidTestImplementation testDependencies.mockitoDexmaker
+    androidTestImplementation testDependencies.kakao
+    androidTestImplementation dependencies.gson
 
     implementation dependencies.kotlin
 

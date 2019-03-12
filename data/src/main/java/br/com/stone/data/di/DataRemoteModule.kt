@@ -11,8 +11,10 @@ import java.util.concurrent.TimeUnit
 
 val dataRemoteModule = module {
 
+    factory("api_url") { ChuckApi.API_URL }
+
     single { createOkHttpClient() }
-    single { createWebService<ChuckApi>(get(), ChuckApi.API_URL) }
+    single { createWebService<ChuckApi>(get(), get("api_url")) }
 
     single { RemoteDataSource(chuckApi = get()) }
 
