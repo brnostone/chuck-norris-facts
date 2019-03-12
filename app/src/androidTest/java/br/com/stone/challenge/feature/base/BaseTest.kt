@@ -5,12 +5,10 @@ import android.content.Intent
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.rule.ActivityTestRule
 import br.com.stone.challenge.mock.MockServer
-import org.junit.After
 import org.junit.Before
 import org.junit.Rule
 import org.koin.dsl.module.module
 import org.koin.standalone.StandAloneContext.loadKoinModules
-import org.koin.standalone.StandAloneContext.stopKoin
 import kotlin.reflect.KClass
 
 open class BaseTest<T: Activity> (klass: KClass<T>) {
@@ -29,11 +27,6 @@ open class BaseTest<T: Activity> (klass: KClass<T>) {
         }
 
         loadKoinModules(mockModule)
-    }
-
-    @After
-    fun afterEachTest() {
-        stopKoin()
     }
 
     protected fun startActivity() {

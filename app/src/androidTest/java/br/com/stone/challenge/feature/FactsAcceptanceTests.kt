@@ -78,7 +78,7 @@ class FactsAcceptanceTests: BaseTest<FactsActivity>(FactsActivity::class) {
     }
 
     @Test
-    fun acceptSuggestions() {
+    fun acceptSearchValidateError() {
         mockServer.simulate {
             allCorrect()
         }
@@ -94,25 +94,11 @@ class FactsAcceptanceTests: BaseTest<FactsActivity>(FactsActivity::class) {
         onScreen<SearchScreen> {
             inputLayoutSearch {
                 edit {
-                    typeText("historic 1")
-                    pressImeAction()
+                    typeText("a")
                 }
-            }
-        }
 
-
-        onScreen<FactsScreen> {
-            btnSearchFact {
-                click()
-            }
-        }
-
-        onScreen<SearchScreen> {
-            recyclerHistoric {
-                firstChild<SearchScreen.Item> {
-                    isVisible()
-                    txtTitle { hasText("historic 1") }
-                }
+                isErrorEnabled()
+                hasError("This field must have more characters")
             }
         }
     }
@@ -132,13 +118,32 @@ class FactsAcceptanceTests: BaseTest<FactsActivity>(FactsActivity::class) {
         }
 
         onScreen<SearchScreen> {
-            inputLayoutSearch {
-                edit {
-                    typeText("historic 1")
-                    pressImeAction()
+            recyclerHistoric {
+                firstChild<SearchScreen.Item> {
+                    click()
                 }
             }
         }
+
+        onScreen<FactsScreen> {
+            emptyLayout {
+                isGone()
+            }
+
+            recyclerFacts {
+                isVisible()
+                hasSize(53)
+            }
+        }
+    }
+/*
+    @Test
+    fun acceptSuggestions() {
+        mockServer.simulate {
+            allCorrect()
+        }
+
+        startActivity()
 
         onScreen<FactsScreen> {
             btnSearchFact {
@@ -147,6 +152,12 @@ class FactsAcceptanceTests: BaseTest<FactsActivity>(FactsActivity::class) {
         }
 
         onScreen<SearchScreen> {
+            layoutSuggestions {
+
+                KView {
+
+                }
+            }
             recyclerHistoric {
                 firstChild<SearchScreen.Item> {
                     isVisible()
@@ -154,6 +165,6 @@ class FactsAcceptanceTests: BaseTest<FactsActivity>(FactsActivity::class) {
                 }
             }
         }
-    }
+    }*/
 
 }
