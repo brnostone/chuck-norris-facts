@@ -6,6 +6,7 @@ import br.com.stone.challenge.feature.base.BaseTest
 import br.com.stone.challenge.feature.facts.FactsActivity
 import br.com.stone.challenge.feature.screen.FactsScreen
 import br.com.stone.challenge.feature.screen.SearchScreen
+import com.agoda.kakao.screen.Screen.Companion.idle
 import com.agoda.kakao.screen.Screen.Companion.onScreen
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -22,14 +23,14 @@ class FactsAcceptanceTests: BaseTest<FactsActivity>(FactsActivity::class) {
         startActivity()
 
         onScreen<FactsScreen> {
-            emptyLayout { isVisible() }
+            emptyLayout.isVisible()
 
             txtEmptyTitle {
                 isVisible()
                 hasText(R.string.text_welcome)
             }
 
-            btnSearchFact { click() }
+            btnSearchFact.click()
         }
     }
 
@@ -42,23 +43,21 @@ class FactsAcceptanceTests: BaseTest<FactsActivity>(FactsActivity::class) {
         startActivity()
 
         onScreen<FactsScreen> {
-            btnSearchFact {
-                click()
-            }
+            btnSearchFact.click()
         }
 
         onScreen<SearchScreen> {
             inputLayoutSearch {
-                edit { typeText("test") }
+                edit.typeText("test")
 
                 isErrorDisabled()
 
-                edit { pressImeAction() }
+                edit.pressImeAction()
             }
         }
 
         onScreen<FactsScreen> {
-            emptyLayout { isGone() }
+            emptyLayout.isGone()
 
             recyclerFacts {
                 isVisible()
@@ -76,12 +75,12 @@ class FactsAcceptanceTests: BaseTest<FactsActivity>(FactsActivity::class) {
         startActivity()
 
         onScreen<FactsScreen> {
-            btnSearchFact { click() }
+            btnSearchFact.click()
         }
 
         onScreen<SearchScreen> {
             inputLayoutSearch {
-                edit { typeText("a") }
+                edit.typeText("a")
 
                 isErrorEnabled()
                 hasError("This field must have more characters")
@@ -98,7 +97,7 @@ class FactsAcceptanceTests: BaseTest<FactsActivity>(FactsActivity::class) {
         startActivity()
 
         onScreen<FactsScreen> {
-            btnSearchFact { click() }
+            btnSearchFact.click()
         }
 
         onScreen<SearchScreen> {
@@ -110,11 +109,69 @@ class FactsAcceptanceTests: BaseTest<FactsActivity>(FactsActivity::class) {
         }
 
         onScreen<FactsScreen> {
-            emptyLayout { isGone() }
+            emptyLayout.isGone()
 
             recyclerFacts {
                 isVisible()
                 hasSize(53)
+            }
+        }
+    }
+
+    @Test
+    fun acceptSuggestions() {
+        mockServer.simulate {
+            allCorrect()
+        }
+
+        startActivity()
+
+        onScreen<FactsScreen> {
+            btnSearchFact.click()
+        }
+
+        onScreen<SearchScreen> {
+            suggestionTagView.click()
+        }
+
+        onScreen<FactsScreen> {
+            emptyLayout.isGone()
+
+            recyclerFacts {
+                isVisible()
+                hasSize(53)
+            }
+        }
+    }
+
+    @Test
+    fun acceptShareFact() {
+        mockServer.simulate {
+            allCorrect()
+        }
+
+        startActivity()
+
+        onScreen<FactsScreen> {
+            btnSearchFact.click()
+        }
+
+        onScreen<SearchScreen> {
+            inputLayoutSearch {
+                edit {
+                    typeText("test")
+                    pressImeAction()
+                }
+            }
+        }
+
+        onScreen<FactsScreen> {
+            recyclerFacts {
+                firstChild<FactsScreen.Item> {
+                    btnShare.click()
+                }
+
+                idle(1000)
             }
         }
     }
@@ -129,7 +186,7 @@ class FactsAcceptanceTests: BaseTest<FactsActivity>(FactsActivity::class) {
         startActivity()
 
         onScreen<FactsScreen> {
-            btnSearchFact { click() }
+            btnSearchFact.click()
         }
 
         onScreen<SearchScreen> {
@@ -142,9 +199,9 @@ class FactsAcceptanceTests: BaseTest<FactsActivity>(FactsActivity::class) {
         }
 
         onScreen<FactsScreen> {
-            errorView { isVisible() }
-            txtViewError { hasText(R.string.error_network) }
-            imgViewError { hasDrawable(R.drawable.ic_network_error) }
+            errorView.isVisible()
+            txtViewError.hasText(R.string.error_network)
+            imgViewError.hasDrawable(R.drawable.ic_network_error)
         }
     }
 
@@ -158,7 +215,7 @@ class FactsAcceptanceTests: BaseTest<FactsActivity>(FactsActivity::class) {
         startActivity()
 
         onScreen<FactsScreen> {
-            btnSearchFact { click() }
+            btnSearchFact.click()
         }
 
         onScreen<SearchScreen> {
@@ -171,9 +228,9 @@ class FactsAcceptanceTests: BaseTest<FactsActivity>(FactsActivity::class) {
         }
 
         onScreen<FactsScreen> {
-            errorView { isVisible() }
-            txtViewError { hasText(R.string.error_server) }
-            imgViewError { hasDrawable(R.drawable.ic_server_error) }
+            errorView.isVisible()
+            txtViewError.hasText(R.string.error_server)
+            imgViewError.hasDrawable(R.drawable.ic_server_error)
         }
     }
 
@@ -187,7 +244,7 @@ class FactsAcceptanceTests: BaseTest<FactsActivity>(FactsActivity::class) {
         startActivity()
 
         onScreen<FactsScreen> {
-            btnSearchFact { click() }
+            btnSearchFact.click()
         }
 
         onScreen<SearchScreen> {
@@ -200,41 +257,10 @@ class FactsAcceptanceTests: BaseTest<FactsActivity>(FactsActivity::class) {
         }
 
         onScreen<FactsScreen> {
-            errorView { isVisible() }
-            txtViewError { hasText(R.string.error_generic) }
-            imgViewError { hasDrawable(R.drawable.ic_generic_error) }
+            errorView.isVisible()
+            txtViewError.hasText(R.string.error_generic)
+            imgViewError.hasDrawable(R.drawable.ic_generic_error)
         }
     }
-
-/*
-    @Test
-    fun acceptSuggestions() {
-        mockServer.simulate {
-            allCorrect()
-        }
-
-        startActivity()
-
-        onScreen<FactsScreen> {
-            btnSearchFact {
-                click()
-            }
-        }
-
-        onScreen<SearchScreen> {
-            layoutSuggestions {
-
-                KView {
-
-                }
-            }
-            recyclerHistoric {
-                firstChild<SearchScreen.Item> {
-                    isVisible()
-                    txtTitle { hasText("historic 1") }
-                }
-            }
-        }
-    }*/
 
 }
