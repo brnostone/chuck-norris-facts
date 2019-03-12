@@ -13,10 +13,35 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
     }
+
+    signingConfigs {
+        release {
+            storeFile file("../keystore.jks")
+            keyAlias 'challenge'
+            keyPassword 'brunostone'
+            storePassword 'brunostone'
+        }
+    }
+
     buildTypes {
         release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+
+            minifyEnabled true
+            zipAlignEnabled true
+            shrinkResources true
+
+            debuggable false
+            jniDebuggable false
+
+            FileCollection proGuardFileCollection = files { file('./proguard/').listFiles() }
+            proGuardFileCollection.each {
+                println "Proguard file located and processed: " + it
+
+                proguardFiles it
+            }
+
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
 
