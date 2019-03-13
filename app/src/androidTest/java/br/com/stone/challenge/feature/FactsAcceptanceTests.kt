@@ -143,36 +143,6 @@ class FactsAcceptanceTests: BaseTest<FactsActivity>(FactsActivity::class) {
         }
     }
 
-    /*@Test
-    fun acceptShareFact() {
-        mockServer.simulate {
-            allCorrect()
-        }
-
-        startActivity()
-
-        onScreen<FactsScreen> {
-            btnSearchFact.click()
-        }
-
-        onScreen<SearchScreen> {
-            inputLayoutSearch {
-                edit {
-                    typeText("test")
-                    pressImeAction()
-                }
-            }
-        }
-
-        onScreen<FactsScreen> {
-            recyclerFacts {
-                firstChild<FactsScreen.Item> {
-                    btnShare.click()
-                }
-            }
-        }
-    }*/
-
     @Test
     fun acceptNetworkError() {
         mockServer.simulate {
