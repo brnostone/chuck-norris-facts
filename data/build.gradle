@@ -24,15 +24,13 @@ dependencies {
     def dependencies = rootProject.ext.dependencies
     def testDependencies = rootProject.ext.testDependencies
 
+    testImplementation testDependencies.androidTest
+    testImplementation testDependencies.archTest
     testImplementation testDependencies.jUnit
     testImplementation testDependencies.mockWebServer
     testImplementation testDependencies.mockito
     testImplementation testDependencies.mockitoKt
-
-    androidTestImplementation testDependencies.espressoCore
-    androidTestImplementation testDependencies.androidTestRunner
-    androidTestImplementation testDependencies.androidTestRules
-    androidTestImplementation testDependencies.androidTestExt
+    testImplementation testDependencies.roboletric
 
     implementation dependencies.kotlin
 
