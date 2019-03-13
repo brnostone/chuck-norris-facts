@@ -64,7 +64,7 @@ class FactsActivity : AppCompatActivity() {
 
     private fun showInitialLayout() {
         emptyLayout.isVisible = true
-        txtEmptyTitle.setText(R.string.text_welcome)
+        txtEmptyTitle.setText(R.string.message_welcome)
     }
 
     private fun showLoading() {
@@ -79,7 +79,7 @@ class FactsActivity : AppCompatActivity() {
 
     private fun updateList(newFacts: List<FactScreen>) {
         emptyLayout.isVisible = newFacts.isEmpty()
-        txtEmptyTitle.setText(R.string.text_no_results)
+        txtEmptyTitle.setText(R.string.message_no_results)
 
         recyclerFacts.scrollToPosition(0)
 
@@ -98,7 +98,7 @@ class FactsActivity : AppCompatActivity() {
     private fun shareUrl(url: String) {
         ShareCompat.IntentBuilder.from(this)
             .setType("text/plain")
-            .setChooserTitle(R.string.share_url)
+            .setChooserTitle(R.string.title_share_url)
             .setText(url)
             .startChooser()
     }

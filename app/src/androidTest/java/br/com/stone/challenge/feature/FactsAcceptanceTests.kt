@@ -26,7 +26,7 @@ class FactsAcceptanceTests: BaseTest<FactsActivity>(FactsActivity::class) {
 
             txtEmptyTitle {
                 isVisible()
-                hasText(R.string.text_welcome)
+                hasText(R.string.message_welcome)
             }
 
             btnSearchFact.click()

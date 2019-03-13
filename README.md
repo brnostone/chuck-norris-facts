@@ -1,8 +1,9 @@
 # Chuck Norris facts
 
-Used [Chuck Norris API](https://api.chucknorris.io/) ,
+Used [Chuck Norris API](https://api.chucknorris.io/)
 
 - Full Kotlin
+- Multi Module
 - Model View ViewModel Architecture (MVVM)
 - Koin for Dependency Injection
 - RxJava

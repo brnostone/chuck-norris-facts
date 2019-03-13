@@ -1,20 +1,22 @@
 <resources>
     <string name="app_name">Chuck Norris Facts</string>
-    <string name="search">Search</string>
+    <string name="title_search">Search</string>
 
-    <string name="share_url">Share URL</string>
-    <string name="uncategorized">Uncategorized</string>
+    <string name="tag_uncategorized">Uncategorized</string>
 
     <string name="error_generic">Unexpected error</string>
     <string name="error_network">Please check your internet connection</string>
     <string name="error_server">Internal Server Error</string>
     <string name="error_invalid_term_size">This field must have more characters</string>
-    
-    <string name="input_search_hint">Enter your search term</string>
+
     <string name="title_suggestions">Suggestions</string>
     <string name="title_past_searches">Past Searches</string>
-    <string name="text_welcome">Welcome to Chuck Norris Facts</string>
-    <string name="text_no_results">No results found</string>
+    <string name="title_share_url">Share URL</string>
+
+    <string name="input_search_hint">Enter your search term</string>
+
+    <string name="message_welcome">Welcome to Chuck Norris Facts</string>
+    <string name="message_no_results">No results found</string>
     <string name="button_search_fact">Search a fact</string>
 
 </resources>
