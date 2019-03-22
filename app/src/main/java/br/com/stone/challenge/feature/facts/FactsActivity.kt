@@ -43,7 +43,7 @@ class FactsActivity : AppCompatActivity() {
     }
 
     private fun bindObserver() {
-        viewModel.state.observe(this, Observer { state ->
+        viewModel.getState().observe(this, Observer { state ->
             when (state) {
                 is ViewState.Default -> showInitialLayout()
                 is ViewState.Loading -> showLoading()

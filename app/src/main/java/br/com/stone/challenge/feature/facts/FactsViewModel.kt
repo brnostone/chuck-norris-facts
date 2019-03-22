@@ -7,6 +7,7 @@ import androidx.lifecycle.OnLifecycleEvent
 import br.com.stone.challenge.feature.common.StateMachine
 import br.com.stone.challenge.feature.common.ViewState
 import br.com.stone.challenge.util.RxViewModel
+import br.com.stone.challenge.util.extensions.toImmutable
 import br.com.stone.domain.interactor.SearchFactsUseCase
 import br.com.stone.domain.interactor.UpdateSuggestionsCacheUseCase
 import io.reactivex.rxkotlin.plusAssign
@@ -17,9 +18,11 @@ class FactsViewModel(
         private val searchUseCase: SearchFactsUseCase,
         private val updateSuggestionsUseCase: UpdateSuggestionsCacheUseCase) : RxViewModel(), LifecycleObserver {
 
-    val state = MutableLiveData<ViewState<List<FactScreen>>>().apply {
+    private val state = MutableLiveData<ViewState<List<FactScreen>>>().apply {
         value = ViewState.Default
     }
+
+    fun getState() = state.toImmutable()
 
     @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
     fun updateSuggestions() {

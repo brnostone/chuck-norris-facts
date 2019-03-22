@@ -40,7 +40,7 @@ class SearchViewModelTest {
 
     @Test
     fun `should emmit states of suggestions success`() {
-        viewModel.categoriesState.observeForever(categoriesState)
+        viewModel.getCategoriesState().observeForever(categoriesState)
 
         val provided = CategoryFactory.stubList()
         val expected = CategoryScreenMapper.map(provided)
@@ -56,7 +56,7 @@ class SearchViewModelTest {
 
     @Test
     fun `should emmit states of suggestions error`() {
-        viewModel.categoriesState.observeForever(categoriesState)
+        viewModel.getCategoriesState().observeForever(categoriesState)
 
         val expected = NetworkException.ConnectionException
         whenever(suggestionsUseCase.execute()).thenReturn(Observable.error(expected))
@@ -70,7 +70,7 @@ class SearchViewModelTest {
 
     @Test
     fun `should emmit states of historic success`() {
-        viewModel.historicState.observeForever(lastSearchesState)
+        viewModel.getHistoricState().observeForever(lastSearchesState)
 
         val provided = HistoricFactory.stubList()
         val expected = HistoricFactory.stubList()
@@ -86,7 +86,7 @@ class SearchViewModelTest {
 
     @Test
     fun `should emmit states of historic error`() {
-        viewModel.historicState.observeForever(lastSearchesState)
+        viewModel.getHistoricState().observeForever(lastSearchesState)
 
         val expected = NetworkException.ConnectionException
 
@@ -101,7 +101,7 @@ class SearchViewModelTest {
 
     @Test
     fun `should emmit isSearchValid false when search is less than 3 characters`() {
-        viewModel.isSearchValid.observeForever(isSearchValid)
+        viewModel.getIsSearchValid().observeForever(isSearchValid)
 
         val expected = false
         viewModel.search = "a"
@@ -111,7 +111,7 @@ class SearchViewModelTest {
 
     @Test
     fun `should emmit isSearchValid true when search is greater than or equal to 3 characters`() {
-        viewModel.isSearchValid.observeForever(isSearchValid)
+        viewModel.getIsSearchValid().observeForever(isSearchValid)
 
         val expected = true
         viewModel.search = "abc"

@@ -33,8 +33,8 @@ val useCaseModule = module {
 
     factory {
         UpdateSuggestionsCacheUseCase(
-                categoryRepository = get(),
-                scheduler = Schedulers.io()
+            categoryRepository = get(),
+            scheduler = Schedulers.io()
         )
     }
 

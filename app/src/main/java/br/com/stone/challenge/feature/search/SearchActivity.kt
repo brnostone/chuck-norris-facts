@@ -51,7 +51,7 @@ class SearchActivity : AppCompatActivity() {
     }
 
     private fun bindObserver() {
-        viewModel.categoriesState.observe(this, Observer { state ->
+        viewModel.getCategoriesState().observe(this, Observer { state ->
             when (state) {
                 is ViewState.Loading -> showLoadingSuggestions()
                 is ViewState.Success -> {
@@ -62,7 +62,7 @@ class SearchActivity : AppCompatActivity() {
             }
         })
 
-        viewModel.historicState.observe(this, Observer { state ->
+        viewModel.getHistoricState().observe(this, Observer { state ->
             when (state) {
                 is ViewState.Loading -> {}
                 is ViewState.Success -> updateHistoricList(state.data)
@@ -70,7 +70,7 @@ class SearchActivity : AppCompatActivity() {
             }
         })
 
-        viewModel.isSearchValid.observe(this, Observer { isValid ->
+        viewModel.getIsSearchValid().observe(this, Observer { isValid ->
             if (isValid)
                 inputLayoutSearch.isErrorEnabled = false
             else
@@ -78,7 +78,7 @@ class SearchActivity : AppCompatActivity() {
         })
 
         inputSearch.onActionSearch {
-            if (viewModel.isSearchValid.value == true)
+            if (viewModel.getIsSearchValid().value == true)
                 search(viewModel.search)
         }
 

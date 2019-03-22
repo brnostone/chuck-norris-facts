@@ -36,7 +36,7 @@ class FactsViewModelTest {
 
     @Test
     fun `should emmit states of success`() {
-        viewModel.state.observeForever(state)
+        viewModel.getState().observeForever(state)
 
         val provided = listOf(fact)
         val expected = FactScreenMapper.map(provided)
@@ -53,7 +53,7 @@ class FactsViewModelTest {
 
     @Test
     fun `should emmit states of error`() {
-        viewModel.state.observeForever(state)
+        viewModel.getState().observeForever(state)
 
         val expected = NetworkException.ConnectionException
 

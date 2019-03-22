@@ -7,6 +7,7 @@ import androidx.lifecycle.OnLifecycleEvent
 import br.com.stone.challenge.feature.common.StateMachine
 import br.com.stone.challenge.feature.common.ViewState
 import br.com.stone.challenge.util.RxViewModel
+import br.com.stone.challenge.util.extensions.toImmutable
 import br.com.stone.domain.interactor.GetHistoricListUseCase
 import br.com.stone.domain.interactor.GetSuggestionListUseCase
 import io.reactivex.rxkotlin.plusAssign
@@ -16,10 +17,14 @@ class SearchViewModel(
     private val suggestionsUseCase: GetSuggestionListUseCase,
     private val historicUseCase: GetHistoricListUseCase) : RxViewModel(), LifecycleObserver {
 
-    val categoriesState = MutableLiveData<ViewState<List<CategoryScreen>>>()
-    val historicState = MutableLiveData<ViewState<List<String>>>()
+    private val categoriesState = MutableLiveData<ViewState<List<CategoryScreen>>>()
+    private val historicState = MutableLiveData<ViewState<List<String>>>()
 
-    val isSearchValid = MutableLiveData<Boolean>()
+    private val isSearchValid = MutableLiveData<Boolean>()
+
+    fun getCategoriesState() = categoriesState.toImmutable()
+    fun getHistoricState() = historicState.toImmutable()
+    fun getIsSearchValid() = isSearchValid.toImmutable()
 
     var search = ""
         set(value) {
